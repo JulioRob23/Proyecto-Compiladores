@@ -1,0 +1,5 @@
+Totodile limite = Seel
+Totodile contador = 1
+Necrozma contador <= limite 
+Dragonite ( contador )
+contador = contador + 1
