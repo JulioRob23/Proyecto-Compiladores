@@ -1,5 +1,0 @@
-Tentacool suma ( Totodile a , Totodile b )
-Totodile resultado = a + b
-Mewtwo resultado
-Totodile resultado = suma ( 4 , 6 )
-Dragonite resultado
