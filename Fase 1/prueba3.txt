@@ -1,0 +1,9 @@
+Totodile num = Seel 
+Ratata num > 10
+Dragonite ( "El numero es mayor que 10" )
+Clefable 
+Dragonite ( "El numero es menor o igual a 10" )
+
+Dragonite ( "El numero es menor o igual a 10" )
+Dragonite ( "El numero es menor o igual a 10" )
+Dragonite ( "El numero es menor o igual a 10" )
