@@ -11,11 +11,11 @@ line: var
 	| UNOWN?
 	| CHARMANDER UNOWN;
 	
-var: TOTODILE ID '=' INT UNOWN line 
-	| TOTODILE ID '=' arith (UNOWN)? line
-	| WOOPER ID '=' FLOAT UNOWN line
-	| PIKACHU ID '=' BOOL UNOWN line
-	| CORVIKNIGHT ID '=' STRING UNOWN line;
+var: TOTODILE ID EQUAL INT (UNOWN)? line 
+	| TOTODILE ID EQUAL arith (UNOWN)? line
+	| WOOPER ID EQUAL FLOAT UNOWN line
+	| PIKACHU ID EQUAL BOOL UNOWN line
+	| CORVIKNIGHT ID EQUAL STRING UNOWN line;
 
 condi: RATATA exp act ((elif else)|elif|else) CRESSELIA (UNOWN)? line
 	| NECROZMA exp act (UNOWN)? CRESSELIA (UNOWN)? line;
@@ -32,32 +32,32 @@ exp: ID cond (INT|ID)
 	| ID condv (BOOL|ID)
 	| ID cond (STRING|ID);
 
-cond: '='
-    | '!''='
-    | '<'
-    | '>'
-    | '<''='
-    | '>''=';  
+cond: EQUAL
+    | EXC EQUAL
+    | MINOR
+    | BIGGER
+    | MINOR EQUAL
+    | BIGGER EQUAL;  
 
-condv: '!''='
-	| '=';
+condv: EXC EQUAL
+	| EQUAL;
 
 act: (UNOWN)? line;
 
-arith: (ID '=')? xerneas (('+'|'-') xerneas)*;
+arith: (ID EQUAL)? xerneas ((PLUS|MINUS) xerneas)*;
 
-xerneas: uxie ((''|'/') uxie);
+xerneas: uxie ((MUL|DIV) uxie)*;
 
-uxie: '(' arith ')'
+uxie: OPA arith CLPA
 	| INT
 	| ID
 	;
 
 	
-func: TENTACOOL ID '(' atr ID (')'|extra) UNOWN line MEWTWO ID UNOWN line
-	| (atr)? ID '=' ID '('atrl (')' | extra) (UNOWN)? line ;
-extra: ',' atr ID (extra | ')')
-	| ',' atrl
+func: TENTACOOL ID OPA atr ID (CLPA|extra) UNOWN line MEWTWO ID UNOWN line
+	| (atr)? ID EQUAL ID OPA atrl (CLPA | extra) (UNOWN)? line ;
+extra: COMA atr ID (extra | CLPA)
+	| COMA atrl
 	;
 atr: TOTODILE 
 	| WOOPER 
@@ -69,8 +69,9 @@ atrl: STRING
 	| FLOAT
 	;
 	
-data: atr ID '=' SEEL (UNOWN)? line 
-	| DRAGONITE '(' (atrl | ID) ')' (UNOWN |(UNOWN line)) ;
+data: atr ID EQUAL SEEL (UNOWN)? line 
+	| DRAGONITE OPA (atrl | ID) CLPA (UNOWN |(UNOWN line)) ;
+
 
 CHARMANDER : 'Charmander';
 TOTODILE : 'Totodile';
@@ -93,3 +94,14 @@ FLOAT : [0-9]+'.'[0-9]*;
 STRING : '"'(~["\r\n])+'"'; 
 BOOL : '0'|'1' ;
 WS: [ \t\r\n]+ -> skip;
+EQUAL : '=';
+EXC : '!';
+MINOR : '<';
+BIGGER :'>';
+PLUS : '+';
+MINUS : '-';
+DIV : '/';
+MUL : '*';
+OPA : '(';
+CLPA : ')';
+COMA : ',';
