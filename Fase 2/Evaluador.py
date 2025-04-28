@@ -3,6 +3,12 @@ from proyectoParser import *
 from proyectoListener import *
 
 class Evaluador(proyectoVisitor):
+
+    def __init__(self):
+        self.varTOTODILE = {}
+        self.varWOOPER = {}
+        self.varPIKACHU = {}
+        self.varCORVIKNIGHT = {}
     
     # Visit a parse tree produced by proyectoParser#start.
     def visitStart(self, ctx:proyectoParser.StartContext):
@@ -36,17 +42,186 @@ class Evaluador(proyectoVisitor):
 
     # Visit a parse tree produced by proyectoParser#exp.
     def visitExp(self, ctx:proyectoParser.ExpContext):
-        return self.visitChildren(ctx)
+        print("visit: EXP")
+        mybool = True
+        if ctx.BOOL() is not None or ctx.ID(1).getText() == "0F" or ctx.ID(1).getText() == "1V": 
+            if ctx.BOOL() is not None and ctx.BOOL().getText() == "0F" : 
+                mybool = False
+            elif ctx.BOOL() is not None and ctx.BOOL().getText() == "1V" : 
+                mybool = True
+            elif ctx.ID(1).getText() == "0F": 
+                mybool = False
+            elif ctx.ID(1).getText() == "1V": 
+                mybool = True
+            condv = self.visit(ctx.condv())
+            if ctx.ID(0).getText() == "0F" or ctx.ID(0).getText == "1V":
+                if condv == "!=":
+                    if  ctx.ID(0).getText().strip() in self.varPIKACHU: 
+                        value = self.varPIKACHU[ctx.ID(0).getText().strip()]
+                        if value == mybool: 
+                            return True
+                        else: 
+                            return False
+            else: 
+                return
+        else: 
+            cond = self.visit(ctx.cond())
+            if ctx.INT() is not None or ctx.ID(1).getText() in self.varTOTODILE :
+                if ctx.INT() is not None: 
+                    value2 = int(ctx.INT().getText())
+                else: 
+                    value2 = self.varTOTODILE[ctx.ID(1).getText()]
+                value1 = self.varTOTODILE[ctx.ID(0).getText()]
+                if cond == "<": 
+                    if value1 < value2: 
+                        return True
+                    else: 
+                        return False
+                elif cond == "<=": 
+                    if value1 <= value2: 
+                        return True
+                    else: 
+                        return False
+                elif cond == ">": 
+                    if value1 > value2: 
+                        return True
+                    else: 
+                        return False
+                elif cond == ">=": 
+                    if value1 >= value2: 
+                        return True
+                    else: 
+                        return False
+                elif cond == "!=": 
+                    if value1 != value2: 
+                        return True
+                    else: 
+                        return False
+                else: 
+                    if value1 == value2: 
+                        return True
+                    else: 
+                        return False
+            elif ctx.FLOAT() is not None or ctx.ID(1).getText() in self.varWOOPER :
+                if ctx.FLOAT() is not None: 
+                    value2 = float(ctx.INT().getText())
+                else: 
+                    value2 = self.varWOOPER[ctx.ID(1).getText()]
+                value1 = self.varWOOPER[ctx.ID(0).getText]()
+                if cond == "<": 
+                    if value1 < value2: 
+                        return True
+                    else: 
+                        return False
+                elif cond == "<=": 
+                    if value1 <= value2: 
+                        return True
+                    else: 
+                        return False
+                elif cond == ">": 
+                    if value1 > value2: 
+                        return True
+                    else: 
+                        return False
+                elif cond == ">=": 
+                    if value1 >= value2: 
+                        return True
+                    else: 
+                        return False
+                elif cond == "!=": 
+                    if value1 != value2: 
+                        return True
+                    else: 
+                        return False
+                else: 
+                    if value1 == value2: 
+                        return True
+                    else: 
+                        return False
+            elif ctx.STRING() is not None or ctx.ID(1).getText() in self.varCORVIKNIGHT :
+                if ctx.STRING() is not None: 
+                    value2 = ctx.INT().getText()
+                else: 
+                    value2 = self.varWOOPER[ctx.ID(1).getText()]
+                value1 = self.varWOOPER[ctx.ID(0).getText()]
+                if cond == "<": 
+                    if value1 < value2: 
+                        return True
+                    else: 
+                        return False
+                elif cond == "<=": 
+                    if value1 <= value2: 
+                        return True
+                    else: 
+                        return False
+                elif cond == ">": 
+                    if value1 > value2: 
+                        return True
+                    else: 
+                        return False
+                elif cond == ">=": 
+                    if value1 >= value2: 
+                        return True
+                    else: 
+                        return False
+                elif cond == "!=": 
+                    if value1 != value2: 
+                        return True
+                    else: 
+                        return False
+                else: 
+                    if value1 == value2: 
+                        return True
+                    else: 
+                        return False
 
 
     # Visit a parse tree produced by proyectoParser#cond.
     def visitCond(self, ctx:proyectoParser.CondContext):
-        return self.visitChildren(ctx)
+        if ctx.EXC() is not None: 
+            exc = ctx.EXC().getText.strip()
+            if ctx.EQUAL() is not None:
+                equal = ctx.EQUAL().getText.strip()
+                return  "" + exc + equal
+            else: 
+                return
+        elif ctx.MINOR() is not None: 
+            minor = ctx.MINOR().getText.strip()
+            if ctx.EQUAL() is not None:
+                equal = ctx.EQUAL().getText.strip()
+                return  "" + minor + equal
+            else: 
+                return "" + minor
+        elif ctx.BIGGER() is not None: 
+            bigger = ctx.BIGGER().getText.strip()
+            if ctx.EQUAL() is not None:
+                equal = ctx.EQUAL().getText.strip()
+                return  "" + bigger + equal
+            else: 
+                return "" + bigger
+        elif ctx.EQUAL() is not None: 
+            equal = ctx.EQUAL().getText.strip()
+            return "" + equal
+        else: 
+            return
 
 
     # Visit a parse tree produced by proyectoParser#condv.
     def visitCondv(self, ctx:proyectoParser.CondvContext):
-        return self.visitChildren(ctx)
+        print("Visit: CONDV")
+        
+        if ctx.EXC() is not None: 
+            exc = ctx.EXC().getText.strip()
+            if ctx.EQUAL() is not None:
+                equal = ctx.EQUAL().getText.strip()
+                return  "" + exc + equal
+            else: 
+                return
+        elif ctx.EQUAL() is not None: 
+            equal = ctx.EQUAL().getText.strip()
+            return "" + equal
+        else: 
+            return
 
 
     # Visit a parse tree produced by proyectoParser#act.
@@ -66,7 +241,18 @@ class Evaluador(proyectoVisitor):
 
     # Visit a parse tree produced by proyectoParser#uxie.
     def visitUxie(self, ctx:proyectoParser.UxieContext):
-        return self.visitChildren(ctx)
+        print("Visit: UXIE")
+        
+        if ctx.ID() is not None: 
+            value = ctx.ID.getText()
+            print(f"ID: {value}")
+            return value
+        elif ctx.INT() is not None: 
+            value = int(ctx.INT().getText())
+            print(f"INT: {value}")
+            return value
+        else: 
+            return self.visit(ctx.arith())
 
 
     # Visit a parse tree produced by proyectoParser#func.
