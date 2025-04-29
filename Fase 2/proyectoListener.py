@@ -134,12 +134,21 @@ class proyectoListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by proyectoParser#extra.
-    def enterExtra(self, ctx:proyectoParser.ExtraContext):
+    # Enter a parse tree produced by proyectoParser#extraf.
+    def enterExtraf(self, ctx:proyectoParser.ExtrafContext):
         pass
 
-    # Exit a parse tree produced by proyectoParser#extra.
-    def exitExtra(self, ctx:proyectoParser.ExtraContext):
+    # Exit a parse tree produced by proyectoParser#extraf.
+    def exitExtraf(self, ctx:proyectoParser.ExtrafContext):
+        pass
+
+
+    # Enter a parse tree produced by proyectoParser#extrac.
+    def enterExtrac(self, ctx:proyectoParser.ExtracContext):
+        pass
+
+    # Exit a parse tree produced by proyectoParser#extrac.
+    def exitExtrac(self, ctx:proyectoParser.ExtracContext):
         pass
 
 

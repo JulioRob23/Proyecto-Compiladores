@@ -10,38 +10,39 @@ else:
 
 def serializedATN():
     return [
-        4,1,32,268,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,32,282,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
-        2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,1,0,1,0,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,3,1,47,8,1,1,1,1,1,3,1,51,8,1,1,2,1,2,1,2,1,2,1,
-        2,3,2,58,8,2,1,2,1,2,1,2,1,2,1,2,1,2,3,2,66,8,2,1,2,1,2,1,2,1,2,
-        1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,
-        3,2,88,8,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,98,8,3,1,3,1,3,3,
-        3,102,8,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,110,8,3,1,3,1,3,3,3,114,8,
-        3,1,3,1,3,3,3,118,8,3,1,4,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,6,1,6,1,
-        6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,3,6,144,8,
-        6,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,3,7,155,8,7,1,8,1,8,1,8,3,
-        8,160,8,8,1,9,3,9,163,8,9,1,9,1,9,1,10,1,10,3,10,169,8,10,1,10,1,
-        10,1,10,5,10,174,8,10,10,10,12,10,177,9,10,1,11,1,11,1,11,5,11,182,
-        8,11,10,11,12,11,185,9,11,1,12,1,12,1,12,1,12,1,12,1,12,3,12,193,
-        8,12,1,13,1,13,1,13,1,13,1,13,1,13,1,13,3,13,202,8,13,1,13,1,13,
-        1,13,1,13,1,13,1,13,1,13,1,13,3,13,212,8,13,1,13,1,13,1,13,1,13,
-        1,13,1,13,1,13,3,13,221,8,13,1,13,3,13,224,8,13,1,13,1,13,3,13,228,
-        8,13,1,14,1,14,1,14,1,14,1,14,3,14,235,8,14,1,14,1,14,3,14,239,8,
-        14,1,15,1,15,1,16,1,16,1,17,1,17,1,17,1,17,1,17,3,17,250,8,17,1,
-        17,1,17,1,17,1,17,1,17,1,17,3,17,258,8,17,1,17,1,17,1,17,1,17,3,
-        17,264,8,17,3,17,266,8,17,1,17,0,0,18,0,2,4,6,8,10,12,14,16,18,20,
-        22,24,26,28,30,32,34,0,8,1,0,16,17,1,0,17,18,2,0,17,17,20,20,2,0,
-        17,17,19,19,1,0,26,27,1,0,28,29,1,0,2,5,2,0,16,16,18,19,295,0,36,
-        1,0,0,0,2,50,1,0,0,0,4,87,1,0,0,0,6,117,1,0,0,0,8,119,1,0,0,0,10,
-        124,1,0,0,0,12,143,1,0,0,0,14,154,1,0,0,0,16,159,1,0,0,0,18,162,
-        1,0,0,0,20,168,1,0,0,0,22,178,1,0,0,0,24,192,1,0,0,0,26,227,1,0,
-        0,0,28,238,1,0,0,0,30,240,1,0,0,0,32,242,1,0,0,0,34,265,1,0,0,0,
-        36,37,3,2,1,0,37,1,1,0,0,0,38,51,3,4,2,0,39,51,3,6,3,0,40,51,3,20,
-        10,0,41,51,3,26,13,0,42,51,3,34,17,0,43,44,5,13,0,0,44,51,5,15,0,
-        0,45,47,5,15,0,0,46,45,1,0,0,0,46,47,1,0,0,0,47,51,1,0,0,0,48,49,
-        5,1,0,0,49,51,5,15,0,0,50,38,1,0,0,0,50,39,1,0,0,0,50,40,1,0,0,0,
-        50,41,1,0,0,0,50,42,1,0,0,0,50,43,1,0,0,0,50,46,1,0,0,0,50,48,1,
+        2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,1,0,1,0,1,1,1,
+        1,1,1,1,1,1,1,1,1,3,1,47,8,1,1,1,1,1,3,1,51,8,1,1,2,1,2,1,2,1,2,
+        1,2,3,2,58,8,2,1,2,1,2,1,2,1,2,1,2,1,2,3,2,66,8,2,1,2,1,2,1,2,1,
+        2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,
+        2,3,2,88,8,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,98,8,3,1,3,1,3,
+        3,3,102,8,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,110,8,3,1,3,1,3,3,3,114,
+        8,3,1,3,1,3,3,3,118,8,3,1,4,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,6,1,6,
+        1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,3,6,144,
+        8,6,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,3,7,155,8,7,1,8,1,8,1,8,
+        3,8,160,8,8,1,9,3,9,163,8,9,1,9,1,9,1,10,1,10,3,10,169,8,10,1,10,
+        1,10,1,10,5,10,174,8,10,10,10,12,10,177,9,10,1,11,1,11,1,11,5,11,
+        182,8,11,10,11,12,11,185,9,11,1,12,1,12,1,12,1,12,1,12,1,12,3,12,
+        193,8,12,1,13,1,13,1,13,1,13,1,13,1,13,1,13,3,13,202,8,13,1,13,1,
+        13,3,13,206,8,13,1,13,1,13,1,13,1,13,3,13,212,8,13,1,13,1,13,1,13,
+        1,13,3,13,218,8,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,3,13,227,8,
+        13,1,13,1,13,3,13,231,8,13,1,13,3,13,234,8,13,1,13,3,13,237,8,13,
+        1,14,1,14,1,14,1,14,1,14,3,14,244,8,14,1,15,1,15,1,15,3,15,249,8,
+        15,1,15,1,15,3,15,253,8,15,1,16,1,16,1,17,1,17,1,18,1,18,1,18,1,
+        18,1,18,3,18,264,8,18,1,18,1,18,1,18,1,18,1,18,1,18,3,18,272,8,18,
+        1,18,1,18,1,18,1,18,3,18,278,8,18,3,18,280,8,18,1,18,0,0,19,0,2,
+        4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,0,8,1,0,16,17,1,
+        0,17,18,2,0,17,17,20,20,2,0,17,17,19,19,1,0,26,27,1,0,28,29,1,0,
+        2,5,2,0,16,16,18,19,311,0,38,1,0,0,0,2,50,1,0,0,0,4,87,1,0,0,0,6,
+        117,1,0,0,0,8,119,1,0,0,0,10,124,1,0,0,0,12,143,1,0,0,0,14,154,1,
+        0,0,0,16,159,1,0,0,0,18,162,1,0,0,0,20,168,1,0,0,0,22,178,1,0,0,
+        0,24,192,1,0,0,0,26,236,1,0,0,0,28,238,1,0,0,0,30,245,1,0,0,0,32,
+        254,1,0,0,0,34,256,1,0,0,0,36,279,1,0,0,0,38,39,3,2,1,0,39,1,1,0,
+        0,0,40,51,3,4,2,0,41,51,3,6,3,0,42,51,3,20,10,0,43,51,3,26,13,0,
+        44,51,3,36,18,0,45,47,5,15,0,0,46,45,1,0,0,0,46,47,1,0,0,0,47,51,
+        1,0,0,0,48,49,5,1,0,0,49,51,5,15,0,0,50,40,1,0,0,0,50,41,1,0,0,0,
+        50,42,1,0,0,0,50,43,1,0,0,0,50,44,1,0,0,0,50,46,1,0,0,0,50,48,1,
         0,0,0,51,3,1,0,0,0,52,53,5,2,0,0,53,54,5,17,0,0,54,55,5,22,0,0,55,
         57,5,16,0,0,56,58,5,15,0,0,57,56,1,0,0,0,57,58,1,0,0,0,58,59,1,0,
         0,0,59,88,3,2,1,0,60,61,5,2,0,0,61,62,5,17,0,0,62,63,5,22,0,0,63,
@@ -83,30 +84,35 @@ def serializedATN():
         184,1,0,0,0,184,23,1,0,0,0,185,183,1,0,0,0,186,187,5,30,0,0,187,
         188,3,20,10,0,188,189,5,31,0,0,189,193,1,0,0,0,190,193,5,16,0,0,
         191,193,5,17,0,0,192,186,1,0,0,0,192,190,1,0,0,0,192,191,1,0,0,0,
-        193,25,1,0,0,0,194,195,5,9,0,0,195,196,5,17,0,0,196,197,5,30,0,0,
-        197,198,3,30,15,0,198,201,5,17,0,0,199,202,5,31,0,0,200,202,3,28,
-        14,0,201,199,1,0,0,0,201,200,1,0,0,0,202,203,1,0,0,0,203,204,5,15,
-        0,0,204,205,3,2,1,0,205,206,5,14,0,0,206,207,5,17,0,0,207,208,5,
-        15,0,0,208,209,3,2,1,0,209,228,1,0,0,0,210,212,3,30,15,0,211,210,
-        1,0,0,0,211,212,1,0,0,0,212,213,1,0,0,0,213,214,5,17,0,0,214,215,
-        5,22,0,0,215,216,5,17,0,0,216,217,5,30,0,0,217,220,3,32,16,0,218,
-        221,5,31,0,0,219,221,3,28,14,0,220,218,1,0,0,0,220,219,1,0,0,0,221,
-        223,1,0,0,0,222,224,5,15,0,0,223,222,1,0,0,0,223,224,1,0,0,0,224,
-        225,1,0,0,0,225,226,3,2,1,0,226,228,1,0,0,0,227,194,1,0,0,0,227,
-        211,1,0,0,0,228,27,1,0,0,0,229,230,5,32,0,0,230,231,3,30,15,0,231,
-        234,5,17,0,0,232,235,3,28,14,0,233,235,5,31,0,0,234,232,1,0,0,0,
-        234,233,1,0,0,0,235,239,1,0,0,0,236,237,5,32,0,0,237,239,3,32,16,
-        0,238,229,1,0,0,0,238,236,1,0,0,0,239,29,1,0,0,0,240,241,7,6,0,0,
-        241,31,1,0,0,0,242,243,7,7,0,0,243,33,1,0,0,0,244,245,3,30,15,0,
-        245,246,5,17,0,0,246,247,5,22,0,0,247,249,5,10,0,0,248,250,5,15,
-        0,0,249,248,1,0,0,0,249,250,1,0,0,0,250,251,1,0,0,0,251,252,3,2,
-        1,0,252,266,1,0,0,0,253,254,5,11,0,0,254,257,5,30,0,0,255,258,3,
-        32,16,0,256,258,5,17,0,0,257,255,1,0,0,0,257,256,1,0,0,0,258,259,
-        1,0,0,0,259,263,5,31,0,0,260,264,5,15,0,0,261,262,5,15,0,0,262,264,
-        3,2,1,0,263,260,1,0,0,0,263,261,1,0,0,0,264,266,1,0,0,0,265,244,
-        1,0,0,0,265,253,1,0,0,0,266,35,1,0,0,0,29,46,50,57,65,87,97,101,
-        109,113,117,143,154,159,162,168,175,183,192,201,211,220,223,227,
-        234,238,249,257,263,265
+        193,25,1,0,0,0,194,205,5,9,0,0,195,196,5,17,0,0,196,197,5,30,0,0,
+        197,198,3,32,16,0,198,201,5,17,0,0,199,202,5,31,0,0,200,202,3,28,
+        14,0,201,199,1,0,0,0,201,200,1,0,0,0,202,206,1,0,0,0,203,204,5,30,
+        0,0,204,206,5,31,0,0,205,195,1,0,0,0,205,203,1,0,0,0,206,207,1,0,
+        0,0,207,208,5,15,0,0,208,209,3,2,1,0,209,211,5,14,0,0,210,212,5,
+        17,0,0,211,210,1,0,0,0,211,212,1,0,0,0,212,213,1,0,0,0,213,214,5,
+        15,0,0,214,215,3,2,1,0,215,237,1,0,0,0,216,218,3,32,16,0,217,216,
+        1,0,0,0,217,218,1,0,0,0,218,219,1,0,0,0,219,220,5,17,0,0,220,221,
+        5,22,0,0,221,230,5,17,0,0,222,223,5,30,0,0,223,226,3,34,17,0,224,
+        227,5,31,0,0,225,227,3,30,15,0,226,224,1,0,0,0,226,225,1,0,0,0,227,
+        231,1,0,0,0,228,229,5,30,0,0,229,231,5,31,0,0,230,222,1,0,0,0,230,
+        228,1,0,0,0,231,233,1,0,0,0,232,234,5,15,0,0,233,232,1,0,0,0,233,
+        234,1,0,0,0,234,235,1,0,0,0,235,237,3,2,1,0,236,194,1,0,0,0,236,
+        217,1,0,0,0,237,27,1,0,0,0,238,239,5,32,0,0,239,240,3,32,16,0,240,
+        243,5,17,0,0,241,244,3,28,14,0,242,244,5,31,0,0,243,241,1,0,0,0,
+        243,242,1,0,0,0,244,29,1,0,0,0,245,248,5,32,0,0,246,249,3,34,17,
+        0,247,249,5,17,0,0,248,246,1,0,0,0,248,247,1,0,0,0,249,252,1,0,0,
+        0,250,253,3,30,15,0,251,253,5,31,0,0,252,250,1,0,0,0,252,251,1,0,
+        0,0,253,31,1,0,0,0,254,255,7,6,0,0,255,33,1,0,0,0,256,257,7,7,0,
+        0,257,35,1,0,0,0,258,259,3,32,16,0,259,260,5,17,0,0,260,261,5,22,
+        0,0,261,263,5,10,0,0,262,264,5,15,0,0,263,262,1,0,0,0,263,264,1,
+        0,0,0,264,265,1,0,0,0,265,266,3,2,1,0,266,280,1,0,0,0,267,268,5,
+        11,0,0,268,271,5,30,0,0,269,272,3,34,17,0,270,272,5,17,0,0,271,269,
+        1,0,0,0,271,270,1,0,0,0,272,273,1,0,0,0,273,277,5,31,0,0,274,278,
+        5,15,0,0,275,276,5,15,0,0,276,278,3,2,1,0,277,274,1,0,0,0,277,275,
+        1,0,0,0,278,280,1,0,0,0,279,258,1,0,0,0,279,267,1,0,0,0,280,37,1,
+        0,0,0,33,46,50,57,65,87,97,101,109,113,117,143,154,159,162,168,175,
+        183,192,201,205,211,217,226,230,233,236,243,248,252,263,271,277,
+        279
     ]
 
 class proyectoParser ( Parser ):
@@ -148,14 +154,15 @@ class proyectoParser ( Parser ):
     RULE_xerneas = 11
     RULE_uxie = 12
     RULE_func = 13
-    RULE_extra = 14
-    RULE_atr = 15
-    RULE_atrl = 16
-    RULE_data = 17
+    RULE_extraf = 14
+    RULE_extrac = 15
+    RULE_atr = 16
+    RULE_atrl = 17
+    RULE_data = 18
 
     ruleNames =  [ "start", "line", "var", "condi", "elif", "else", "exp", 
                    "cond", "condv", "act", "arith", "xerneas", "uxie", "func", 
-                   "extra", "atr", "atrl", "data" ]
+                   "extraf", "extrac", "atr", "atrl", "data" ]
 
     EOF = Token.EOF
     CHARMANDER=1
@@ -237,7 +244,7 @@ class proyectoParser ( Parser ):
         self.enterRule(localctx, 0, self.RULE_start)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 36
+            self.state = 38
             self.line()
         except RecognitionException as re:
             localctx.exception = re
@@ -275,9 +282,6 @@ class proyectoParser ( Parser ):
             return self.getTypedRuleContext(proyectoParser.DataContext,0)
 
 
-        def CRESSELIA(self):
-            return self.getToken(proyectoParser.CRESSELIA, 0)
-
         def UNOWN(self):
             return self.getToken(proyectoParser.UNOWN, 0)
 
@@ -314,44 +318,36 @@ class proyectoParser ( Parser ):
             la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 38
+                self.state = 40
                 self.var()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 39
+                self.state = 41
                 self.condi()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 40
+                self.state = 42
                 self.arith()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 41
+                self.state = 43
                 self.func()
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 42
+                self.state = 44
                 self.data()
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 43
-                self.match(proyectoParser.CRESSELIA)
-                self.state = 44
-                self.match(proyectoParser.UNOWN)
-                pass
-
-            elif la_ == 7:
-                self.enterOuterAlt(localctx, 7)
                 self.state = 46
                 self._errHandler.sync(self)
                 la_ = self._interp.adaptivePredict(self._input,0,self._ctx)
@@ -362,8 +358,8 @@ class proyectoParser ( Parser ):
 
                 pass
 
-            elif la_ == 8:
-                self.enterOuterAlt(localctx, 8)
+            elif la_ == 7:
+                self.enterOuterAlt(localctx, 7)
                 self.state = 48
                 self.match(proyectoParser.CHARMANDER)
                 self.state = 49
@@ -1455,19 +1451,6 @@ class proyectoParser ( Parser ):
         def TENTACOOL(self):
             return self.getToken(proyectoParser.TENTACOOL, 0)
 
-        def ID(self, i:int=None):
-            if i is None:
-                return self.getTokens(proyectoParser.ID)
-            else:
-                return self.getToken(proyectoParser.ID, i)
-
-        def OPA(self):
-            return self.getToken(proyectoParser.OPA, 0)
-
-        def atr(self):
-            return self.getTypedRuleContext(proyectoParser.AtrContext,0)
-
-
         def UNOWN(self, i:int=None):
             if i is None:
                 return self.getTokens(proyectoParser.UNOWN)
@@ -1484,11 +1467,24 @@ class proyectoParser ( Parser ):
         def MEWTWO(self):
             return self.getToken(proyectoParser.MEWTWO, 0)
 
+        def ID(self, i:int=None):
+            if i is None:
+                return self.getTokens(proyectoParser.ID)
+            else:
+                return self.getToken(proyectoParser.ID, i)
+
+        def OPA(self):
+            return self.getToken(proyectoParser.OPA, 0)
+
+        def atr(self):
+            return self.getTypedRuleContext(proyectoParser.AtrContext,0)
+
+
         def CLPA(self):
             return self.getToken(proyectoParser.CLPA, 0)
 
-        def extra(self):
-            return self.getTypedRuleContext(proyectoParser.ExtraContext,0)
+        def extraf(self):
+            return self.getTypedRuleContext(proyectoParser.ExtrafContext,0)
 
 
         def EQUAL(self):
@@ -1496,6 +1492,10 @@ class proyectoParser ( Parser ):
 
         def atrl(self):
             return self.getTypedRuleContext(proyectoParser.AtrlContext,0)
+
+
+        def extrac(self):
+            return self.getTypedRuleContext(proyectoParser.ExtracContext,0)
 
 
         def getRuleIndex(self):
@@ -1524,91 +1524,125 @@ class proyectoParser ( Parser ):
         self.enterRule(localctx, 26, self.RULE_func)
         self._la = 0 # Token type
         try:
-            self.state = 227
+            self.state = 236
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [9]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 194
                 self.match(proyectoParser.TENTACOOL)
-                self.state = 195
-                self.match(proyectoParser.ID)
-                self.state = 196
-                self.match(proyectoParser.OPA)
-                self.state = 197
-                self.atr()
-                self.state = 198
-                self.match(proyectoParser.ID)
-                self.state = 201
+                self.state = 205
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
-                if token in [31]:
-                    self.state = 199
-                    self.match(proyectoParser.CLPA)
+                if token in [17]:
+                    self.state = 195
+                    self.match(proyectoParser.ID)
+                    self.state = 196
+                    self.match(proyectoParser.OPA)
+                    self.state = 197
+                    self.atr()
+                    self.state = 198
+                    self.match(proyectoParser.ID)
+                    self.state = 201
+                    self._errHandler.sync(self)
+                    token = self._input.LA(1)
+                    if token in [31]:
+                        self.state = 199
+                        self.match(proyectoParser.CLPA)
+                        pass
+                    elif token in [32]:
+                        self.state = 200
+                        self.extraf()
+                        pass
+                    else:
+                        raise NoViableAltException(self)
+
                     pass
-                elif token in [32]:
-                    self.state = 200
-                    self.extra()
+                elif token in [30]:
+                    self.state = 203
+                    self.match(proyectoParser.OPA)
+                    self.state = 204
+                    self.match(proyectoParser.CLPA)
                     pass
                 else:
                     raise NoViableAltException(self)
 
-                self.state = 203
-                self.match(proyectoParser.UNOWN)
-                self.state = 204
-                self.line()
-                self.state = 205
-                self.match(proyectoParser.MEWTWO)
-                self.state = 206
-                self.match(proyectoParser.ID)
                 self.state = 207
                 self.match(proyectoParser.UNOWN)
                 self.state = 208
                 self.line()
-                pass
-            elif token in [2, 3, 4, 5, 17]:
-                self.enterOuterAlt(localctx, 2)
+                self.state = 209
+                self.match(proyectoParser.MEWTWO)
                 self.state = 211
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 60) != 0):
+                if _la==17:
                     self.state = 210
-                    self.atr()
+                    self.match(proyectoParser.ID)
 
 
                 self.state = 213
-                self.match(proyectoParser.ID)
+                self.match(proyectoParser.UNOWN)
                 self.state = 214
-                self.match(proyectoParser.EQUAL)
-                self.state = 215
-                self.match(proyectoParser.ID)
-                self.state = 216
-                self.match(proyectoParser.OPA)
+                self.line()
+                pass
+            elif token in [2, 3, 4, 5, 17]:
+                self.enterOuterAlt(localctx, 2)
                 self.state = 217
-                self.atrl()
-                self.state = 220
                 self._errHandler.sync(self)
-                token = self._input.LA(1)
-                if token in [31]:
-                    self.state = 218
-                    self.match(proyectoParser.CLPA)
-                    pass
-                elif token in [32]:
-                    self.state = 219
-                    self.extra()
-                    pass
-                else:
-                    raise NoViableAltException(self)
+                _la = self._input.LA(1)
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & 60) != 0):
+                    self.state = 216
+                    self.atr()
 
-                self.state = 223
+
+                self.state = 219
+                self.match(proyectoParser.ID)
+                self.state = 220
+                self.match(proyectoParser.EQUAL)
+                self.state = 221
+                self.match(proyectoParser.ID)
+                self.state = 230
                 self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,21,self._ctx)
+                la_ = self._interp.adaptivePredict(self._input,23,self._ctx)
                 if la_ == 1:
                     self.state = 222
+                    self.match(proyectoParser.OPA)
+                    self.state = 223
+                    self.atrl()
+                    self.state = 226
+                    self._errHandler.sync(self)
+                    token = self._input.LA(1)
+                    if token in [31]:
+                        self.state = 224
+                        self.match(proyectoParser.CLPA)
+                        pass
+                    elif token in [32]:
+                        self.state = 225
+                        self.extrac()
+                        pass
+                    else:
+                        raise NoViableAltException(self)
+
+                    pass
+
+                elif la_ == 2:
+                    self.state = 228
+                    self.match(proyectoParser.OPA)
+                    self.state = 229
+                    self.match(proyectoParser.CLPA)
+                    pass
+
+
+                self.state = 233
+                self._errHandler.sync(self)
+                la_ = self._interp.adaptivePredict(self._input,24,self._ctx)
+                if la_ == 1:
+                    self.state = 232
                     self.match(proyectoParser.UNOWN)
 
 
-                self.state = 225
+                self.state = 235
                 self.line()
                 pass
             else:
@@ -1623,7 +1657,7 @@ class proyectoParser ( Parser ):
         return localctx
 
 
-    class ExtraContext(ParserRuleContext):
+    class ExtrafContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1640,77 +1674,147 @@ class proyectoParser ( Parser ):
         def ID(self):
             return self.getToken(proyectoParser.ID, 0)
 
-        def extra(self):
-            return self.getTypedRuleContext(proyectoParser.ExtraContext,0)
+        def extraf(self):
+            return self.getTypedRuleContext(proyectoParser.ExtrafContext,0)
 
 
         def CLPA(self):
             return self.getToken(proyectoParser.CLPA, 0)
 
-        def atrl(self):
-            return self.getTypedRuleContext(proyectoParser.AtrlContext,0)
-
-
         def getRuleIndex(self):
-            return proyectoParser.RULE_extra
+            return proyectoParser.RULE_extraf
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterExtra" ):
-                listener.enterExtra(self)
+            if hasattr( listener, "enterExtraf" ):
+                listener.enterExtraf(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitExtra" ):
-                listener.exitExtra(self)
+            if hasattr( listener, "exitExtraf" ):
+                listener.exitExtraf(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExtra" ):
-                return visitor.visitExtra(self)
+            if hasattr( visitor, "visitExtraf" ):
+                return visitor.visitExtraf(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def extra(self):
+    def extraf(self):
 
-        localctx = proyectoParser.ExtraContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 28, self.RULE_extra)
+        localctx = proyectoParser.ExtrafContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 28, self.RULE_extraf)
         try:
+            self.enterOuterAlt(localctx, 1)
             self.state = 238
+            self.match(proyectoParser.COMA)
+            self.state = 239
+            self.atr()
+            self.state = 240
+            self.match(proyectoParser.ID)
+            self.state = 243
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,24,self._ctx)
-            if la_ == 1:
-                self.enterOuterAlt(localctx, 1)
-                self.state = 229
-                self.match(proyectoParser.COMA)
-                self.state = 230
-                self.atr()
-                self.state = 231
-                self.match(proyectoParser.ID)
-                self.state = 234
-                self._errHandler.sync(self)
-                token = self._input.LA(1)
-                if token in [32]:
-                    self.state = 232
-                    self.extra()
-                    pass
-                elif token in [31]:
-                    self.state = 233
-                    self.match(proyectoParser.CLPA)
-                    pass
-                else:
-                    raise NoViableAltException(self)
-
+            token = self._input.LA(1)
+            if token in [32]:
+                self.state = 241
+                self.extraf()
                 pass
+            elif token in [31]:
+                self.state = 242
+                self.match(proyectoParser.CLPA)
+                pass
+            else:
+                raise NoViableAltException(self)
 
-            elif la_ == 2:
-                self.enterOuterAlt(localctx, 2)
-                self.state = 236
-                self.match(proyectoParser.COMA)
-                self.state = 237
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class ExtracContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def COMA(self):
+            return self.getToken(proyectoParser.COMA, 0)
+
+        def atrl(self):
+            return self.getTypedRuleContext(proyectoParser.AtrlContext,0)
+
+
+        def ID(self):
+            return self.getToken(proyectoParser.ID, 0)
+
+        def extrac(self):
+            return self.getTypedRuleContext(proyectoParser.ExtracContext,0)
+
+
+        def CLPA(self):
+            return self.getToken(proyectoParser.CLPA, 0)
+
+        def getRuleIndex(self):
+            return proyectoParser.RULE_extrac
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterExtrac" ):
+                listener.enterExtrac(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitExtrac" ):
+                listener.exitExtrac(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExtrac" ):
+                return visitor.visitExtrac(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def extrac(self):
+
+        localctx = proyectoParser.ExtracContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 30, self.RULE_extrac)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 245
+            self.match(proyectoParser.COMA)
+            self.state = 248
+            self._errHandler.sync(self)
+            token = self._input.LA(1)
+            if token in [16, 18, 19]:
+                self.state = 246
                 self.atrl()
                 pass
+            elif token in [17]:
+                self.state = 247
+                self.match(proyectoParser.ID)
+                pass
+            else:
+                raise NoViableAltException(self)
 
+            self.state = 252
+            self._errHandler.sync(self)
+            token = self._input.LA(1)
+            if token in [32]:
+                self.state = 250
+                self.extrac()
+                pass
+            elif token in [31]:
+                self.state = 251
+                self.match(proyectoParser.CLPA)
+                pass
+            else:
+                raise NoViableAltException(self)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1763,11 +1867,11 @@ class proyectoParser ( Parser ):
     def atr(self):
 
         localctx = proyectoParser.AtrContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 30, self.RULE_atr)
+        self.enterRule(localctx, 32, self.RULE_atr)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 240
+            self.state = 254
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 60) != 0)):
                 self._errHandler.recoverInline(self)
@@ -1822,11 +1926,11 @@ class proyectoParser ( Parser ):
     def atrl(self):
 
         localctx = proyectoParser.AtrlContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 32, self.RULE_atrl)
+        self.enterRule(localctx, 34, self.RULE_atrl)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 242
+            self.state = 256
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 851968) != 0)):
                 self._errHandler.recoverInline(self)
@@ -1905,66 +2009,66 @@ class proyectoParser ( Parser ):
     def data(self):
 
         localctx = proyectoParser.DataContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 34, self.RULE_data)
+        self.enterRule(localctx, 36, self.RULE_data)
         try:
-            self.state = 265
+            self.state = 279
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [2, 3, 4, 5]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 244
+                self.state = 258
                 self.atr()
-                self.state = 245
+                self.state = 259
                 self.match(proyectoParser.ID)
-                self.state = 246
+                self.state = 260
                 self.match(proyectoParser.EQUAL)
-                self.state = 247
+                self.state = 261
                 self.match(proyectoParser.SEEL)
-                self.state = 249
+                self.state = 263
                 self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,25,self._ctx)
+                la_ = self._interp.adaptivePredict(self._input,29,self._ctx)
                 if la_ == 1:
-                    self.state = 248
+                    self.state = 262
                     self.match(proyectoParser.UNOWN)
 
 
-                self.state = 251
+                self.state = 265
                 self.line()
                 pass
             elif token in [11]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 253
+                self.state = 267
                 self.match(proyectoParser.DRAGONITE)
-                self.state = 254
+                self.state = 268
                 self.match(proyectoParser.OPA)
-                self.state = 257
+                self.state = 271
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
                 if token in [16, 18, 19]:
-                    self.state = 255
+                    self.state = 269
                     self.atrl()
                     pass
                 elif token in [17]:
-                    self.state = 256
+                    self.state = 270
                     self.match(proyectoParser.ID)
                     pass
                 else:
                     raise NoViableAltException(self)
 
-                self.state = 259
+                self.state = 273
                 self.match(proyectoParser.CLPA)
-                self.state = 263
+                self.state = 277
                 self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,27,self._ctx)
+                la_ = self._interp.adaptivePredict(self._input,31,self._ctx)
                 if la_ == 1:
-                    self.state = 260
+                    self.state = 274
                     self.match(proyectoParser.UNOWN)
                     pass
 
                 elif la_ == 2:
-                    self.state = 261
+                    self.state = 275
                     self.match(proyectoParser.UNOWN)
-                    self.state = 262
+                    self.state = 276
                     self.line()
                     pass
 

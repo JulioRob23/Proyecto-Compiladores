@@ -79,8 +79,13 @@ class proyectoVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by proyectoParser#extra.
-    def visitExtra(self, ctx:proyectoParser.ExtraContext):
+    # Visit a parse tree produced by proyectoParser#extraf.
+    def visitExtraf(self, ctx:proyectoParser.ExtrafContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by proyectoParser#extrac.
+    def visitExtrac(self, ctx:proyectoParser.ExtracContext):
         return self.visitChildren(ctx)
 
 
