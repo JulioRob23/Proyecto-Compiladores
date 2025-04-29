@@ -7,7 +7,6 @@ line: var
 	| arith 
 	| func 
 	| data 
-	| CRESSELIA UNOWN 
 	| UNOWN?
 	| CHARMANDER UNOWN;
 	
@@ -92,7 +91,7 @@ INT : [0-9]+ ;
 ID : [a-zA-Z][A-Za-z0-9]*; 
 FLOAT : [0-9]+'.'[0-9]*; 
 STRING : '"'(~["\r\n])+'"'; 
-BOOL : '0'|'1' ;
+BOOL : '0F'|'1V' ;
 WS: [ \t\r\n]+ -> skip;
 EQUAL : '=';
 EXC : '!';

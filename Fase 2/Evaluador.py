@@ -3,13 +3,13 @@ from proyectoParser import *
 from proyectoListener import *
 
 class Evaluador(proyectoVisitor):
-
+    
     def __init__(self):
         self.varTOTODILE = {}
         self.varWOOPER = {}
         self.varPIKACHU = {}
         self.varCORVIKNIGHT = {}
-    
+        
     # Visit a parse tree produced by proyectoParser#start.
     def visitStart(self, ctx:proyectoParser.StartContext):
         return self.visitChildren(ctx)
@@ -44,26 +44,31 @@ class Evaluador(proyectoVisitor):
     def visitExp(self, ctx:proyectoParser.ExpContext):
         print("visit: EXP")
         mybool = True
-        if ctx.BOOL() is not None or ctx.ID(1).getText() == "0F" or ctx.ID(1).getText() == "1V": 
+        if ctx.BOOL() is not None or ctx.ID(1).getText().strip() in self.varPIKACHU: 
             if ctx.BOOL() is not None and ctx.BOOL().getText() == "0F" : 
                 mybool = False
             elif ctx.BOOL() is not None and ctx.BOOL().getText() == "1V" : 
                 mybool = True
-            elif ctx.ID(1).getText() == "0F": 
-                mybool = False
-            elif ctx.ID(1).getText() == "1V": 
-                mybool = True
-            condv = self.visit(ctx.condv())
-            if ctx.ID(0).getText() == "0F" or ctx.ID(0).getText == "1V":
-                if condv == "!=":
-                    if  ctx.ID(0).getText().strip() in self.varPIKACHU: 
-                        value = self.varPIKACHU[ctx.ID(0).getText().strip()]
-                        if value == mybool: 
-                            return True
-                        else: 
-                            return False
             else: 
-                return
+                mybool = self.varPIKACHU[ctx.ID(1).getText().strip()]
+            condv = self.visit(ctx.condv())
+            if ctx.ID(0).getText().strip() in self.varPIKACHU:
+                if condv == "!=":
+                    value = self.varPIKACHU[ctx.ID(0).getText().strip()]
+                    if value != mybool: 
+                        return True
+                    else: 
+                        return False
+                elif condv == "=": 
+                    value = self.varPIKACHU[ctx.ID(0).getText().strip()]
+                    if value == mybool: 
+                        return True
+                    else: 
+                        return False
+                else: 
+                    print("Error, operador invalido")
+            else: 
+                print("Error, variable no definida")
         else: 
             cond = self.visit(ctx.cond())
             if ctx.INT() is not None or ctx.ID(1).getText() in self.varTOTODILE :
@@ -174,8 +179,8 @@ class Evaluador(proyectoVisitor):
                         return True
                     else: 
                         return False
-
-
+                
+                
     # Visit a parse tree produced by proyectoParser#cond.
     def visitCond(self, ctx:proyectoParser.CondContext):
         if ctx.EXC() is not None: 
@@ -205,7 +210,6 @@ class Evaluador(proyectoVisitor):
         else: 
             return
 
-
     # Visit a parse tree produced by proyectoParser#condv.
     def visitCondv(self, ctx:proyectoParser.CondvContext):
         print("Visit: CONDV")
@@ -222,7 +226,6 @@ class Evaluador(proyectoVisitor):
             return "" + equal
         else: 
             return
-
 
     # Visit a parse tree produced by proyectoParser#act.
     def visitAct(self, ctx:proyectoParser.ActContext):
@@ -244,7 +247,7 @@ class Evaluador(proyectoVisitor):
         print("Visit: UXIE")
         
         if ctx.ID() is not None: 
-            value = ctx.ID.getText()
+            value = int(ctx.ID.getText())
             print(f"ID: {value}")
             return value
         elif ctx.INT() is not None: 
@@ -253,7 +256,7 @@ class Evaluador(proyectoVisitor):
             return value
         else: 
             return self.visit(ctx.arith())
-
+            
 
     # Visit a parse tree produced by proyectoParser#func.
     def visitFunc(self, ctx:proyectoParser.FuncContext):
@@ -280,7 +283,6 @@ class Evaluador(proyectoVisitor):
     # Visit a parse tree produced by proyectoParser#atrl.
     def visitAtrl(self, ctx:proyectoParser.AtrlContext):
         print("Visit: ATRL")
-        
         if ctx.INT() is not None:
             value = int(ctx.INT().getText())
             print(f"INT: {value}")
