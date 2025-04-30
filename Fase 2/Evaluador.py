@@ -51,17 +51,17 @@ class Evaluador(proyectoVisitor):
     # Visit a parse tree produced by proyectoParser#cond.
     def visitCond(self, ctx:proyectoParser.CondContext):
         if ctx.EXC() is not None and ctx.EQUAL() is not None:
-            print("Visit COND - Value: EXC EQUAL")
-        elif ctx.EQUAL() is not None:
-            print("Visit COND - Value: EQUAL")
+            print("Visit COND - Value: !=")
         elif ctx.MINOR() is not None and ctx.EQUAL() is not None:
-            print("Visit COND - Value: MINOR EQUAL")
+            print("Visit COND - Value: <=")
         elif ctx.BIGGER() is not None and ctx.EQUAL() is not None:
-            print("Visit COND - Value: BIGGER EQUAL")
+            print("Visit COND - Value: >=")
         elif ctx.MINOR() is not None:
-            print("Visit COND - Value: MINOR")
+            print("Visit COND - Value: <")
         elif ctx.BIGGER() is not None:
-            print("Visit COND - Value: BIGGER")
+            print("Visit COND - Value: >")
+        elif ctx.EQUAL() is not None:
+            print("Visit COND - Value: =")
         else:
             print("Visit COND - Error: Operador desconocido")
         return
@@ -70,9 +70,11 @@ class Evaluador(proyectoVisitor):
     # Visit a parse tree produced by proyectoParser#condv.
     def visitCondv(self, ctx:proyectoParser.CondvContext):
         if ctx.EXC() is not None and ctx.EQUAL() is not None:
-            print("Visit CONDV - Value: EXC EQUAL")
+            print("Visit CONDV - Value: !=")
         elif ctx.EQUAL() is not None:
-            print("Visit CONDV - Value: EQUAL")
+            print("Visit CONDV - Value: =")
+        else:
+            print("Visit CONDV - Error: Operador desconocido")
         return
 
 
@@ -80,53 +82,71 @@ class Evaluador(proyectoVisitor):
     def visitAct(self, ctx:proyectoParser.ActContext):
         if ctx.UNOWN() is not None:
             print("Visit ACT - value: Unown")
-        return self.visit(ctx.line())
+        self.visit(ctx.line())
+        return 
 
 
     # Visit a parse tree produced by proyectoParser#arith.
     def visitArith(self, ctx:proyectoParser.ArithContext):
+        print("Visit ARITH ")
         if ctx.ID() is not None and ctx.EQUAL() is not None:
-            print(f"Visit ARITH - value: {ctx.ID().getText().strip()}")
+            print(f"Asignacion a : {ctx.ID().getText().strip()}")
+        if ctx.xerneas() is not None: 
             self.visit(ctx.xerneas(0))
-        for i in range(1, len(ctx.xerneas())):
-            if ctx.PLUS() is not None:
-                operador = "+"
-            elif ctx.MINUS() is not None:
-                operador = "-"
-            else:
-                operador = "ninguno"  
-            print(f"Visit ARITH - value: {operador}")
-            self.visit(ctx.xerneas(i))     
-        return
+            if len(ctx.xerneas()) > 1: 
+                idxxerneas = 1
+                for child in ctx.children: 
+                    if child.getText().strip() == "+": 
+                        print("Operador - + ")
+                        self.visit(ctx.xerneas(idxxerneas))
+                        idxxerneas += 1
+                    elif child.getText().strip() == "-":
+                        print("Operador - - ")
+                        self.visit(ctx.xerneas(idxxerneas))
+                        idxxerneas += 1
+                    else: 
+                        return
+            else: 
+                return 
+        else: 
+            print("Error falta de operador")
+            return
 
 
     # Visit a parse tree produced by proyectoParser#xerneas.
     def visitXerneas(self, ctx:proyectoParser.XerneasContext):
-         print("Visit XERNEAS - value: uxie")
-         print("Visit XERNEAS - value: uxie")
-         self.visit(ctx.uxie(0))
-         for i in range(1, len(ctx.uxie())):
-            if ctx.MUL() is not None:
-                operador = "*"
-            elif ctx.DIV() is not None:
-                operador = "/"
-            else:
-                operador = "ninguno" 
-            
-            if operador:
-                print(f"Visit XERNEAS - value: {operador}")
-            
-            print("Visit XERNEAS - value: uxie")
-         return 
+        print("Visit XERNEAS")
+        if ctx.uxie(0) is not None:    
+            self.visit(ctx.uxie(0))
+            if len(ctx.uxie()) > 1: 
+                idxuxie = 1
+                for child in ctx.children: 
+                    if child.getText().strip() == "*": 
+                        print("Operador - * ")
+                        self.visit(ctx.uxie(idxuxie))
+                        idxuxie += 1
+                    elif child.getText().strip() == "/":
+                        print("Operador - / ")
+                        self.visit(ctx.uxie(idxuxie))
+                        idxuxie += 1
+                    else: 
+                        return
+            else: 
+                return
+        else: 
+            print("Error, falta de operador")
+            return
 
 
     # Visit a parse tree produced by proyectoParser#uxie.
     def visitUxie(self, ctx:proyectoParser.UxieContext):
         if ctx.OPA() is not None:
-
-            print("Visit UXIE - Value: Paréntesis abierto")
-            self.visit(ctx.arith())
-            print("Visit UXIE - Paréntesis cerrado")
+            if ctx.CLPA() is not None: 
+                print("Visit UXIE - Value: (")
+                self.visit(ctx.arith())
+                print("Visit UXIE - )")
+            else: 
+                print("Error, numero impar de parentesis")
         elif ctx.INT() is not None:
             print(f"Visit UXIE - Value: {int(ctx.INT().getText().strip())}")
         elif ctx.ID() is not None:
@@ -161,19 +181,19 @@ class Evaluador(proyectoVisitor):
         elif ctx.CORVIKNIGHT() is not None: 
             print(f"Visit ATR - Value: Corviknight")
         else: 
-            print("Error, invalid value")
+            print("Error, ATR -  invalid value")
         return 
 
     # Visit a parse tree produced by proyectoParser#atrl.
     def visitAtrl(self, ctx:proyectoParser.AtrlContext):
         if ctx.STRING() is not None: 
-            print(f"Visit ANTRL - Value: {ctx.STRING().getText().strip()} ")
+            print(f"Visit ATRL - Value: {ctx.STRING().getText().strip()} ")
         elif ctx.INT() is not None: 
-            print(f"Visit ANTRL - Value: {int(ctx.INT().getText().strip())}")
+            print(f"Visit ATRL - Value: {int(ctx.INT().getText().strip())}")
         elif ctx.FLOAT() is not None: 
-            print(f"Visit ANTL - Value: {float(ctx.FLOAT().getText().strip())} ")
+            print(f"Visit ATRL - Value: {float(ctx.FLOAT().getText().strip())} ")
         else: 
-            print("Error, invalid value")
+            print("Error, ATRL - invalid value")
         return
     
     # Visit a parse tree produced by proyectoParser#data.
