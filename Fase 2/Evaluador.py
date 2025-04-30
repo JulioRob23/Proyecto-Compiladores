@@ -13,12 +13,38 @@ class Evaluador(proyectoVisitor):
         
     # Visit a parse tree produced by proyectoParser#start.
     def visitStart(self, ctx:proyectoParser.StartContext):
-        return self.visitChildren(ctx)
+        if ctx.line() is not None:
+            print("Visit START - value: line")
+            return self.visit(ctx.line())
+        else:
+            print("Visit START - Error: no se encontró línea")
+        return
 
 
     # Visit a parse tree produced by proyectoParser#line.
     def visitLine(self, ctx:proyectoParser.LineContext):
-        return self.visitChildren(ctx)
+        if ctx.var() is not None:
+            print("Visit LINE - Variable")
+            return self.visit(ctx.var())
+        elif ctx.condi() is not None:
+            print("Visit LINE - Condición")
+            return self.visit(ctx.condi())
+        elif ctx.arith() is not None:
+            print("Visit LINE - Expresión aritmética")
+            return self.visit(ctx.arith())
+        elif ctx.func() is not None:
+            print("Visit LINE - Función")
+            return self.visit(ctx.func())
+        elif ctx.data() is not None:
+            print("Visit LINE - Datos")
+            return self.visit(ctx.data())
+        elif ctx.UNOWN() is not None:
+            print("Visit LINE - UNOWN")
+        elif ctx.UNOWN() is not None and ctx.CHARMANDER() is not None:
+            print("Visit LINE - CHARMANDER UNOWN")
+        else:
+            print("Visit LINE - Línea vacía o no reconocida")
+        return
 
 
     # Visit a parse tree produced by proyectoParser#var.
@@ -33,7 +59,14 @@ class Evaluador(proyectoVisitor):
 
     # Visit a parse tree produced by proyectoParser#elif.
     def visitElif(self, ctx:proyectoParser.ElifContext):
-        return self.visitChildren(ctx)
+        if ctx.PARAS() is not None and ctx.exp() is not None and ctx.act() is not None and ctx.elif_() is not None:
+            print("Visit ELIF - Value: PARAS")
+            self.visit(ctx.exp())
+            self.visit(ctx.act())
+            self.visit(ctx.elif_())
+        else:
+            print("Error: ELIF incompleto")
+        return
 
 
     # Visit a parse tree produced by proyectoParser#else.
