@@ -357,7 +357,57 @@ class Evaluador(proyectoVisitor):
 
     # Visit a parse tree produced by proyectoParser#func.
     def visitFunc(self, ctx:proyectoParser.FuncContext):
-        return self.visitChildren(ctx)
+        if ctx.TENTACOOL():
+
+            if len(ctx.ID()) >= 2 and ctx.OPA() and ctx.atr():
+                id1 = ctx.ID(0).getText()
+                argumento = self.visit(ctx.atr())
+                id2 = ctx.ID(1).getText()
+                cierre = ctx.CLPA().getText() if ctx.CLPA() else self.visit(ctx.extraf)
+                print(f"VISIT FUNC - {id1} ( {argumento} {id2} {cierre}")
+
+            elif ctx.OPA() and ctx.CLPA():
+                print("VISIT FUNC  - ()")
+
+            if ctx.UNOWN():
+                print("Visit ACT - value: Unown")
+
+            self.visit(ctx.line(0))
+
+            if ctx.MEWTWO():
+                print("VISIT FUNC - MEWTWO")
+                if ctx.ID(2):
+                    print(f"VISIT FUNC -> ID2: {ctx.ID(2).getText()}")
+
+            if ctx.UNOWN(1):
+                print("Visit ACT - value: Unown")
+            self.visit(ctx.line(1))
+
+        else:
+            if ctx.atr():
+                atr_val = self.visit(ctx.atr())
+                print(f"VISIT FUNC - {atr_val}")
+
+            id_izq = ctx.ID(0).getText()
+            if ctx.EQUAL():
+                print(f"FUNC -> {ctx.EQUAL().getText()}")
+            id_der = ctx.ID(1).getText()
+
+            if ctx.OPA():
+                op = ctx.OPA().getText()
+                if ctx.atrl():
+                    arg = self.visit(ctx.atrl())
+                    cierre = ctx.CLPA().getText() if ctx.CLPA() else self.visit(ctx.extrac)
+                    print(f"VISIT FUNC - {id_izq} = {id_der} {op}{arg}{cierre}")
+                else:
+                    print(f"VISIT FUNC -> {id_izq} = {id_der} ()")
+
+            if ctx.UNOWN():
+                print("Visit ACT - value: Unown")
+
+            self.visit(ctx.line(0))
+
+        return
 
 
     # Visit a parse tree produced by proyectoParser#extraf.
