@@ -52,7 +52,7 @@ class Evaluador(proyectoVisitor):
             if ctx.INT() is not None:
                 if var_name not in self.varGeneral:
                     value = int(ctx.INT().getText().strip())
-                    print(f"Visit VAR - Declaracion entero")
+                    print(f"Visit VAR - Declaracion entero para {var_name}")
                     self.varTOTODILE[var_name] = value
                     self.varGeneral[var_name] = value
                 else: 
@@ -60,7 +60,7 @@ class Evaluador(proyectoVisitor):
                     return
             elif ctx.arith() is not None:
                 if var_name not in self.varGeneral:
-                    print(f"Visit VAR - Declaracion entero con operacion aritmetica ")
+                    print(f"Visit VAR - Declaracion entero con operacion aritmetica para {var_name} ")
                     self.visit(ctx.arith())
                     self.varTOTODILE[var_name] = -1
                 else: 
@@ -305,8 +305,7 @@ class Evaluador(proyectoVisitor):
                         print("Operador - - ")
                         self.visit(ctx.xerneas(idxxerneas))
                         idxxerneas += 1
-                    else: 
-                        return
+                
             else: 
                 return 
         else: 
