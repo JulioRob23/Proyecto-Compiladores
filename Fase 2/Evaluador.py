@@ -199,7 +199,54 @@ class Evaluador(proyectoVisitor):
 
     # Visit a parse tree produced by proyectoParser#exp.
     def visitExp(self, ctx:proyectoParser.ExpContext):
-        return self.visitChildren(ctx)
+        ids = ctx.ID()
+        operador = ctx.cond().getText() if ctx.cond() else ctx.condv().getText()
+
+        if len(ids) > 1:
+            id1 = ids[0].getText()
+            id2 = ids[1].getText()
+
+            if id2 in self.varTOTODILE:
+                valor = self.varTOTODILE[id2]
+            elif id2 in self.varWOOPER:
+                valor = self.varWOOPER[id2]
+            elif id2 in self.varCORVIKNIGHT:
+                valor = f"\"{self.varCORVIKNIGHT[id2]}\""
+            elif id2 in self.varPIKACHU:
+                valor = self.varPIKACHU[id2]
+            elif id2 in self.varGeneral:
+                valor = self.varGeneral[id2]
+            else:
+                valor = "<valor no encontrado>"
+            
+            print(f"VISIT EXP - {id1} {operador} {valor}")
+            return f"{id1} {operador} {valor}"
+
+        elif len(ids) == 1:
+            id1 = ids[0].getText()
+
+            if id1 not in self.varTOTODILE and id1 not in self.varWOOPER and \
+            id1 not in self.varCORVIKNIGHT and id1 not in self.varPIKACHU and \
+            id1 not in self.varGeneral:
+                raise Exception(f"ERROR: variable '{id1}' no ha sido declarada")
+
+            if ctx.INT():
+                valor = ctx.INT().getText()
+            elif ctx.FLOAT():
+                valor = ctx.FLOAT().getText()
+            elif ctx.STRING():
+                valor = ctx.STRING().getText()
+                valor = f"\"{valor}\""
+            elif ctx.BOOL():
+                valor = ctx.BOOL().getText()
+            else:
+                valor = "<valor desconocido>"
+
+            print(f"VISIT EXP - {id1} {operador} {valor}")
+            return f"{id1} {operador} {valor}"
+
+        else:
+            print("VISIT EXP - expresión no válida")
 
 
     # Visit a parse tree produced by proyectoParser#cond.
