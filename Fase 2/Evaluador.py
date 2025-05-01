@@ -15,28 +15,33 @@ class Evaluador(proyectoVisitor):
     def visitStart(self, ctx:proyectoParser.StartContext):
         if ctx.line() is not None:
             print("Visit START - value: line")
-            return self.visit(ctx.line())
+            self.visit(ctx.line())
         return
 
 
     # Visit a parse tree produced by proyectoParser#line.
     def visitLine(self, ctx:proyectoParser.LineContext):
         if ctx.var() is not None:
-            print(f"Visit LINE - {self.visit(ctx.var())}")
+            print(f"Visit LINE - Declaracion de variable")
+            self.visit(ctx.var())
         elif ctx.condi() is not None:
-            print(f"Visit LINE - {self.visit(ctx.condi())}")
+            print(f"Visit LINE - Ciclo con condicion")
+            self.visit(ctx.condi())
         elif ctx.arith() is not None:
-            print(f"Visit LINE - {self.visit(ctx.arith())}")
+            print(f"Visit LINE - operacion aritmetica")
+            self.visit(ctx.arith())
         elif ctx.func() is not None:
-            print(f"Visit LINE - {self.visit(ctx.func())}")
+            print(f"Visit LINE - Funcion ")
+            self.visit(ctx.func())
         elif ctx.data() is not None:
-            print(f"Visit LINE - {self.visit(ctx.data())}")
-        elif ctx.UNOWN() is not None:
-            print("Visit LINE - value: UNOWN")
+            print(f"Visit LINE - Manejo de datos")
+            self.visit(ctx.data())
         elif ctx.UNOWN() is not None and ctx.CHARMANDER() is not None:
-            print("Visit LINE - vlaue: CHARMANDER UNOWN")
+            print("Visit LINE - Final programa")
+        elif ctx.UNOWN() is not None:
+            print("Visit LINE - UNOWN")
         else:
-            print("Visit LINE - Línea vacía o no reconocida")
+            print("Visit LINE - Linea no reconocida")
         return
 
 
@@ -45,46 +50,76 @@ class Evaluador(proyectoVisitor):
         if ctx.TOTODILE() is not None and ctx.ID() is not None and ctx.EQUAL() is not None:
             var_name = ctx.ID().getText().strip()
             if ctx.INT() is not None:
-                value = int(ctx.INT().getText().strip())
-                print(f"Visit VAR - TOTODILE {var_name} = {value}")
-                self.varTOTODILE[var_name] = value
+                if var_name not in self.varGeneral:
+                    value = int(ctx.INT().getText().strip())
+                    print(f"Visit VAR - Declaracion entero")
+                    self.varTOTODILE[var_name] = value
+                    self.varGeneral[var_name] = value
+                else: 
+                    print("Error, ya existe la varible que intentas definir")
+                    return
             elif ctx.arith() is not None:
-                print(f"Visit VAR - TOTODILE {var_name} = Expresión aritmética")
-                result = self.visit(ctx.arith())
-                self.varTOTODILE[var_name] = result
+                if var_name not in self.varGeneral:
+                    print(f"Visit VAR - Declaracion entero con operacion aritmetica ")
+                    self.visit(ctx.arith())
+                    self.varTOTODILE[var_name] = -1
+                else: 
+                    print("Error, ya existe la varible que intentas definir")
+                    return
             else:
                 print("Visit VAR - TOTODILE: Error - Valor no especificado")
+                return
             if ctx.UNOWN() is not None:
-                print("Visit VAR - UNOWN")
+                print("Visit VAR entero- UNOWN")
             if ctx.line() is not None:
                 self.visit(ctx.line())
+            else:
+                print("Error, falta fin de programa")
         elif ctx.WOOPER() is not None and ctx.ID() is not None and ctx.EQUAL() is not None and ctx.FLOAT() is not None:
             var_name = ctx.ID().getText().strip()
-            value = float(ctx.FLOAT().getText().strip())
-            print(f"Visit VAR - WOOPER {var_name} = {value}")
-            self.varWOOPER[var_name] = value
+            if var_name not in self.varGeneral:
+                value = float(ctx.FLOAT().getText().strip())
+                print(f"Visit VAR - Declaracion flotante")
+                self.varWOOPER[var_name] = value
+            else: 
+                    print("Error, ya existe la varible que intentas definir")
+                    return
             if ctx.UNOWN() is not None:
                 print("Visit VAR - UNOWN")
             if ctx.line() is not None:
                 self.visit(ctx.line())
+            else:
+                print("Error, falta fin de programa")
         elif ctx.PIKACHU() is not None and ctx.ID() is not None and ctx.EQUAL() is not None and ctx.BOOL() is not None:
             var_name = ctx.ID().getText().strip()
-            value = ctx.BOOL().getText().strip()
-            print(f"Visit VAR - PIKACHU {var_name} = {value}")
-            self.varPIKACHU[var_name] = value
+            if var_name not in self.varGeneral:
+                value = ctx.BOOL().getText().strip()
+                print(f"Visit VAR - Declaracion booleano")
+                self.varPIKACHU[var_name] = value
+            else: 
+                    print("Error, ya existe la varible que intentas definir")
+                    return
             if ctx.UNOWN() is not None:
                 print("Visit VAR - UNOWN")
             if ctx.line() is not None:
                 self.visit(ctx.line())
+            else:
+                print("Error, falta fin de programa")
         elif ctx.CORVIKNIGHT() is not None and ctx.ID() is not None and ctx.EQUAL() is not None and ctx.STRING() is not None:
             var_name = ctx.ID().getText().strip()
-            value = ctx.STRING().getText().strip()
-            print(f"Visit VAR - CORVIKNIGHT {var_name} = {value}")
-            self.varCORVIKNIGHT[var_name] = value
+            if var_name not in self.varGeneral:
+                value = ctx.STRING().getText().strip()
+                print(f"Visit VAR - Declaracion de string")
+                self.varCORVIKNIGHT[var_name] = value
+            else: 
+                print("Error, ya existe la varible que intentas definir")
+                return
             if ctx.UNOWN() is not None:
                 print("Visit VAR - UNOWN")
             if ctx.line() is not None:
                 self.visit(ctx.line())
+            else:
+                print("Error, falta fin de programa")
         else:
             print("Visit VAR - Error: Estructura de variable no reconocida o incompleta")
         return
@@ -92,41 +127,47 @@ class Evaluador(proyectoVisitor):
     # Visit a parse tree produced by proyectoParser#condi.
     def visitCondi(self, ctx:proyectoParser.CondiContext):
         if ctx.RATATA() is not None:
-            if ctx.exp() and ctx.act() and ctx.CRESSELIA() and ctx.line():
-                exp_val = self.visit(ctx.exp())
-                act_val = self.visit(ctx.act())
+            if ctx.exp() is not None and ctx.act() is not None and ctx.CRESSELIA()  is not None and ctx.line() is not None:
+                print("Visit: CONDI - ciclo If")
+                self.visit(ctx.exp())
+                self.visit(ctx.act())
 
-                print(f"Visit CONDI - value: RATATA EXP: {exp_val} ACT: {act_val}")
-
-                elif_else = ctx.elif_() is not None and ctx.else_() is not None
-                if elif_else:
-                    elif_val = self.visit(ctx.elif_())
-                    else_val = self.visit(ctx.else_())
-
-                    print(f"Visit CONDI - value: ELIF: {elif_val}  ELSE: {else_val}")
-
+                if ctx.elif_() is not None and ctx.else_() is not None:
+                    print(f"Visit CONDI - Extension: ELIF")
+                    self.visit(ctx.elif_())
+                    print(f"Visit CONDI - Extension: ELSE")
+                    self.visit(ctx.else_())
                 elif ctx.elif_():
-                    print(f"Visit CONDI - value: {self.visit(ctx.elif_())}")
+                    print(f"Visit CONDI - Extension: ELIF")
+                    self.visit(ctx.elif_())     
                 elif ctx.else_():
-                    print(f"Visit CONDI - value: {self.visit(ctx.else_())}")
-                print("Visit CONDI - value: CRESSELIA")
+                    print(f"Visit CONDI - Extension: ELSE")
+                    self.visit(ctx.else_())
+                    
+                print("Visit CONDI - Fin de ciclo: CRESSELIA")
                 if ctx.UNOWN():
                     print("Visit CONDI - value: UNOWN")
-                self.visit(ctx.line())
+                if ctx.line() is not None:
+                    self.visit(ctx.line())
+                else:
+                    print("Error, falta fin de programa")
             else:
                 print("Visit CONDI - Error en bloque RATATA: faltan componentes")
 
         elif ctx.NECROZMA() is not None:
-            if ctx.exp() and ctx.act() and ctx.CRESSELIA() and ctx.line():
-                exp_val = self.visit(ctx.exp())
-                act_val = self.visit(ctx.act())
-                print(f"Visit CONDI - value: NECROZMA EXP: {exp_val} ACT: {act_val}")
-                
+            if ctx.exp() is not None and ctx.act() is not None and ctx.CRESSELIA() is not None and ctx.line() is not None:
+                print("Visit: CONDI - ciclo While")
+                self.visit(ctx.exp())
+                self.visit(ctx.act())
+                                
                 if ctx.UNOWN():
                     print("Visit CONDI - value: UNOWN")
                 
                 print("Visit CONDI - value: CRESSELIA")
-                self.visit(ctx.line())
+                if ctx.line() is not None:
+                    self.visit(ctx.line())
+                else:
+                    print("Error, falta fin de programa")
             else:
                 print("Visit CONDI - Error en bloque NECROZMA: faltan componentes")
 
@@ -136,12 +177,12 @@ class Evaluador(proyectoVisitor):
 
     # Visit a parse tree produced by proyectoParser#elif.
     def visitElif(self, ctx:proyectoParser.ElifContext):
-        if ctx.PARAS() is not None and ctx.exp() is not None and ctx.act() is not None and ctx.elif_() is not None:
-            exp_val = self.visit(ctx.exp())
-            act_val = self.visit(ctx.act())
-            elif_val = self.visit(ctx.elif_())
-
-            print(f"Visit ELIF - Value: PARAS EXP: {exp_val}  ACT: {act_val} ELIF: {elif_val}")
+        if ctx.PARAS() is not None and ctx.exp() is not None and ctx.act() is not None:
+            self.visit(ctx.exp())
+            self.visit(ctx.act())
+            if ctx.elif_() is not None: 
+                self.visit(ctx.elif_())
+            return
         else:
             print("Error: ELIF incompleto")
         return
@@ -150,8 +191,10 @@ class Evaluador(proyectoVisitor):
     # Visit a parse tree produced by proyectoParser#else.
     def visitElse(self, ctx:proyectoParser.ElseContext):
         if ctx.CLEFABLE() is not None:
-            print("Visit ELSE - Value: CLEFABLE")
-        return self.visitChildren(ctx)
+            self.visit(ctx.else_())
+        else: 
+            print("Error: ELSE incompleto")
+        return 
 
 
     # Visit a parse tree produced by proyectoParser#exp.
@@ -275,42 +318,48 @@ class Evaluador(proyectoVisitor):
     def visitExtraf(self, ctx:proyectoParser.ExtrafContext):
         if ctx.COMA() is not None:
             if ctx.atr() is not None and ctx.ID() is not None:
-                print("Visit EXTRAF - value: extra funcion")
+                print("Visit EXTRAF - parametro extra")
                 self.visit(ctx.atr())
-                self.visit(ctx.ID())
+                print(f"Nombre variable: {ctx.ID().getText().strip()}")
 
                 if ctx.extraf() is not None:
-                    print(f"Visit EXTRAF - value: {self.visit(ctx.extraf())}")
+                    self.visit(ctx.extraf())
                 elif ctx.CLPA() is not None:
-                    print("Visit EXTRAF - value: )")
+                    print("Visit EXTRAF - )")
                     self.visit(ctx.CLPA())
                 else:
                     print("Visit EXTRAF - Error: falta extra funcion o )")
             else:
                 print("Visit EXTRAF - Error en bloque: extra funcion incompleto")
+        else:
+            print("Formato incorrecto")
+        return
 
     
 
       # Visit a parse tree produced by proyectoParser#extrac.
     def visitExtrac(self, ctx:proyectoParser.ExtracContext):
         if ctx.COMA() is not None:
+            print("Visit EXTRAC - atributo extra")
             if ctx.atrl() is not None:
-                print(f"Visit EXTRAC - value: {self.visit(ctx.atrl())}")  
-            elif ctx.ID() is not None:
-                print(f"Visit EXTRAC - value: {self.visit(ctx.ID())}")
+                print("Enviar atributo extra: ")
+                self.visit(ctx.atrl())  
+            elif ctx.ID() is not None:            
+                if ctx.ID() in self.varGeneral:
+                    print(f"Enviar atributo extra - variable: {ctx.ID().getText().strip()}")
             else:
                 print("Visit EXTRAC - Error: falta atrl o ID")
                 return 
 
             if ctx.extrac() is not None:
-                print(f"Visit EXTRAC - value: {self.visit(ctx.extrac())}")
+                self.visit(ctx.extrac())
             elif ctx.CLPA() is not None:
-                print("Visit EXTRAC - value: )")
-                self.visit(ctx.CLPA())
+                print("Visit EXTRAC - )")
             else:
                 print("Visit EXTRAC - Error: falta extrac o )")
         else:
                 print("Visit EXTRAC - Error en bloque: extra condicion incompleto")
+        return
 
 
     # Visit a parse tree produced by proyectoParser#atr.
@@ -342,26 +391,36 @@ class Evaluador(proyectoVisitor):
     # Visit a parse tree produced by proyectoParser#data.
     def visitData(self, ctx:proyectoParser.DataContext):
         if ctx.atr() is not None and ctx.ID() is not None and ctx.EQUAL() is not None and ctx.SEEL() is not None:
-            print("Visit DATA - value: DATA1")
+            print("Visit DATA - Leer datos")
 
             self.visit(ctx.atr())
-            self.visit(ctx.ID())
-            print("Visit DATA - value: = SEEL")
+            
+            if ctx.ID().getText.strip() in self.varGeneral:
+                print(f"Variable a asignar: {ctx.ID().getText.strip()}")
+                print("=")
+            else: 
+                print("Error, no existe la variable ")
+                return
 
             if ctx.UNOWN() is not None:
                 print("Visit DATA - value: UNOWN")
 
             if ctx.line() is not None:
                 self.visit(ctx.line())
+            else: 
+                print("Error, falta fin de programa")
+                return
 
         elif ctx.DRAGONITE() is not None and ctx.OPA() is not None and ctx.CLPA() is not None:
-            print("Visit DATA - value: DRAGONITE ( )")
+            print("Visit DATA - Mostrar datos")
 
             if ctx.atrl() is not None:
-                print(f"Visit DATA - value: {self.visit(ctx.atrl())}")
+                self.visit(ctx.atrl())
             elif ctx.ID() is not None:
-                print(f"Visit DATA - Value: {ctx.ID().getText().strip()}")
-                self.visit(ctx.ID())
+                if ctx.ID().getText().strip() in self.varGeneral:
+                    print(f"Variable a mostrar {ctx.ID().getText().strip()}")
+                else: 
+                    print("Error, no existe la variable")
             else:
                 print("Visit DATA - Error: falta atrl o ID")
                 return

@@ -71,7 +71,7 @@ atrl: STRING
 	;
 	
 data: atr ID EQUAL SEEL (UNOWN)? line 
-	| DRAGONITE OPA (atrl | ID) CLPA (UNOWN |(UNOWN line)) ;
+	| DRAGONITE OPA (atrl | ID) CLPA (UNOWN)? line ;
 
 
 CHARMANDER : 'Charmander';
