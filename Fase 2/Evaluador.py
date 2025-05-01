@@ -40,8 +40,6 @@ class Evaluador(proyectoVisitor):
             print("Visit LINE - Final programa")
         elif ctx.UNOWN() is not None:
             print("Visit LINE - UNOWN")
-        else:
-            print("Visit LINE - Linea no reconocida")
         return
 
 
@@ -191,7 +189,7 @@ class Evaluador(proyectoVisitor):
     # Visit a parse tree produced by proyectoParser#else.
     def visitElse(self, ctx:proyectoParser.ElseContext):
         if ctx.CLEFABLE() is not None:
-            self.visit(ctx.else_())
+            self.visit(ctx.act())
         else: 
             print("Error: ELSE incompleto")
         return 
@@ -491,9 +489,10 @@ class Evaluador(proyectoVisitor):
 
             self.visit(ctx.atr())
             
-            if ctx.ID().getText.strip() in self.varGeneral:
-                print(f"Variable a asignar: {ctx.ID().getText.strip()}")
+            if ctx.ID().getText().strip() not in self.varGeneral:
+                print(f"Variable a asignar: {ctx.ID().getText().strip()}")
                 print("=")
+                self.varGeneral[ctx.ID().getText().strip()] = -1
             else: 
                 print("Error, no existe la variable ")
                 return
