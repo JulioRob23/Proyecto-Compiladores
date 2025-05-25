@@ -16,11 +16,11 @@ var: TOTODILE ID EQUAL INT (UNOWN)? line
 	| PIKACHU ID EQUAL BOOL UNOWN line
 	| CORVIKNIGHT ID EQUAL STRING UNOWN line;
 
-condi: RATATA exp act ((elif else)|elif|else) CRESSELIA (UNOWN)? line
+condi: RATATA exp act (UNOWN)? (elif)? else? CRESSELIA (UNOWN)? line
 	| NECROZMA exp act (UNOWN)? CRESSELIA (UNOWN)? line;
 
 
-elif: PARAS exp act elif  
+elif: (PARAS exp act (UNOWN)?)+
 	;
 
 else: CLEFABLE act 

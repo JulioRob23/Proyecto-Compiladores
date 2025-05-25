@@ -154,18 +154,21 @@ class Evaluador(proyectoVisitor):
         if ctx.RATATA() is not None:
             if ctx.exp() is not None and ctx.act() is not None and ctx.CRESSELIA()  is not None and ctx.line() is not None:
                 print("Visit: CONDI - ciclo If")
+                self.archivo.write("if (")
                 self.visit(ctx.exp())
+                self.archivo.write(")\n {")
                 self.visit(ctx.act())
-
-                if ctx.elif_() is not None and ctx.else_() is not None:
-                    print(f"Visit CONDI - Extension: ELIF")
-                    self.visit(ctx.elif_())
-                    print(f"Visit CONDI - Extension: ELSE")
-                    self.visit(ctx.else_())
-                elif ctx.elif_():
-                    print(f"Visit CONDI - Extension: ELIF")
-                    self.visit(ctx.elif_())     
-                elif ctx.else_():
+                self.archivo.write("\n}")
+                
+                if ctx.elif_():
+                    if isinstance(ctx.elif_(), list):
+                        for elif_ctx in ctx.elif_():
+                            print("Visit CONDI - Extension: ELIF")
+                            self.visit(elif_ctx)
+                    else:
+                        print("Visit CONDI - Extension: ELIF")
+                        self.visit(ctx.elif_())   
+                if ctx.else_():
                     print(f"Visit CONDI - Extension: ELSE")
                     self.visit(ctx.else_())
                     
@@ -182,8 +185,11 @@ class Evaluador(proyectoVisitor):
         elif ctx.NECROZMA() is not None:
             if ctx.exp() is not None and ctx.act() is not None and ctx.CRESSELIA() is not None and ctx.line() is not None:
                 print("Visit: CONDI - ciclo While")
+                self.archivo.write("while (")
                 self.visit(ctx.exp())
+                self.archivo.write(")\n {")
                 self.visit(ctx.act())
+                self.archivo.write("\n}")
                                 
                 if ctx.UNOWN():
                     print("Visit CONDI - value: UNOWN")
@@ -203,10 +209,21 @@ class Evaluador(proyectoVisitor):
     # Visit a parse tree produced by proyectoParser#elif.
     def visitElif(self, ctx:proyectoParser.ElifContext):
         if ctx.PARAS() is not None and ctx.exp() is not None and ctx.act() is not None:
-            self.visit(ctx.exp())
-            self.visit(ctx.act())
-            if ctx.elif_() is not None: 
-                self.visit(ctx.elif_())
+             # La regla permite uno o más exp y act
+            exps = ctx.exp()
+            acts = ctx.act()
+
+            # Asumo que exps y acts tienen igual longitud (uno a uno)
+            for i in range(len(exps)):
+                self.archivo.write("\n else if (")
+                self.visit(exps[i])
+                self.archivo.write(")\n {")
+                self.visit(acts[i])
+                self.archivo.write("\n}")
+            #if ctx.elif_(): 
+            #    for elif_ctx in ctx.elif_():
+            #        print(f"Visit CONDI - Extension: ELIF")
+            #        self.visit(elif_ctx)
             return
         else:
             print("Error: ELIF incompleto")
@@ -216,7 +233,9 @@ class Evaluador(proyectoVisitor):
     # Visit a parse tree produced by proyectoParser#else.
     def visitElse(self, ctx:proyectoParser.ElseContext):
         if ctx.CLEFABLE() is not None:
+            self.archivo.write("\n else {")
             self.visit(ctx.act())
+            self.archivo.write("\n}")
         else: 
             print("Error: ELSE incompleto")
         return 
@@ -226,8 +245,13 @@ class Evaluador(proyectoVisitor):
     def visitExp(self, ctx:proyectoParser.ExpContext):
         ids = ctx.ID()
         operador = ctx.cond().getText() if ctx.cond() else ctx.condv().getText()
+        if operador != "=":
+            self.archivo.write(f"{ids[0].getText()} {operador} ")
+        else:
+            self.archivo.write(f"{ids[0].getText()} {operador}= ")
 
         if len(ids) > 1:
+            self.archivo.write(f"{ids[1].getText()}")
             id1 = ids[0].getText()
             id2 = ids[1].getText()
 
@@ -260,13 +284,21 @@ class Evaluador(proyectoVisitor):
 
             if ctx.INT():
                 valor = ctx.INT().getText()
+                self.archivo.write(f"{valor}")
             elif ctx.FLOAT():
                 valor = ctx.FLOAT().getText()
+                self.archivo.write(f"{valor}")
             elif ctx.STRING():
                 valor = ctx.STRING().getText()
-                valor = f"\"{valor}\""
+                #valor = f"\"{valor}\""
+                self.archivo.write(f"{valor}")
             elif ctx.BOOL():
                 valor = ctx.BOOL().getText()
+                if valor == "0F": 
+                    self.archivo.write(f"false;")
+                else:
+                    self.archivo.write(f"true;")
+
             else:
                 valor = "<valor desconocido>"
 
