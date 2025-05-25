@@ -1,2 +1,11 @@
-Dragonite("Hola Mundo")  
+Totodile  x = 5
+Dragonite ( "Hola Mundo" )
+Dragonite ( 89 )
+Dragonite ( 12.45 )
+Dragonite ( x )
+Totodile y = Seel
+Dragonite ( y )
+Corviknight z = Seel
+Pikachu j = Seel
+Wooper a = Seel
 Charmander

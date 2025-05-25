@@ -3,14 +3,23 @@ from proyectoParser import *
 from proyectoListener import *
 
 class Evaluador(proyectoVisitor):
-    
-    def __init__(self):
+    def _init_(self):
         self.varTOTODILE = {}
         self.varWOOPER = {}
         self.varPIKACHU = {}
         self.varCORVIKNIGHT = {}
         self.varGeneral = {}
-        
+        self.nombre_archivo = "proyecto.txt"
+        self.archivo = open(self.nombre_archivo, 'w') #Se crea o se sobreescribe si ya existe
+        self.archivo.write("internal class Program\n { \n private static void Main(string[] args)\n { \n")
+        self.estadoleer = 0
+    
+    def cerrar_archivo(self):
+        self.archivo.write("\n } \n }")
+        self.archivo.close()
+        return
+
+
     # Visit a parse tree produced by proyectoParser#start.
     def visitStart(self, ctx:proyectoParser.StartContext):
         if ctx.line() is not None:
@@ -461,43 +470,68 @@ class Evaluador(proyectoVisitor):
         return
 
 
-    # Visit a parse tree produced by proyectoParser#atr.
+     # Visit a parse tree produced by proyectoParser#atr.
     def visitAtr(self, ctx:proyectoParser.AtrContext):
         if ctx.TOTODILE() is not None: 
             print(f"Visit ATR - Value: Totodile")
+            self.archivo.write("int ")
+            self.estadoleer = 1
         elif ctx.WOOPER() is not None: 
             print(f"Visit ATR - Value: Wooper")
+            self.archivo.write("double ")
+            self.estadoleer = 2
         elif ctx.PIKACHU() is not None: 
             print(f"Visit ATR - Value: Pickachu")
+            self.archivo.write("bool ")
+            self.estadoleer = 3
         elif ctx.CORVIKNIGHT() is not None: 
             print(f"Visit ATR - Value: Corviknight")
+            self.archivo.write("string ")
+            self.estadoleer = 4
         else: 
             print("Error, ATR -  invalid value")
         return 
+
+
 
     # Visit a parse tree produced by proyectoParser#atrl.
     def visitAtrl(self, ctx:proyectoParser.AtrlContext):
         if ctx.STRING() is not None: 
             print(f"Visit ATRL - Value: {ctx.STRING().getText().strip()} ")
+            self.archivo.write(f"{ctx.STRING().getText().strip()}")
         elif ctx.INT() is not None: 
             print(f"Visit ATRL - Value: {int(ctx.INT().getText().strip())}")
+            self.archivo.write(f"{ctx.INT().getText().strip()}")
+
         elif ctx.FLOAT() is not None: 
             print(f"Visit ATRL - Value: {float(ctx.FLOAT().getText().strip())} ")
+            self.archivo.write(f"{ctx.FLOAT().getText().strip()}")
         else: 
             print("Error, ATRL - invalid value")
         return
+
     
-    # Visit a parse tree produced by proyectoParser#data.
+        # Visit a parse tree produced by proyectoParser#data.
     def visitData(self, ctx:proyectoParser.DataContext):
         if ctx.atr() is not None and ctx.ID() is not None and ctx.EQUAL() is not None and ctx.SEEL() is not None:
             print("Visit DATA - Leer datos")
-
             self.visit(ctx.atr())
             
             if ctx.ID().getText().strip() not in self.varGeneral:
                 print(f"Variable a asignar: {ctx.ID().getText().strip()}")
                 print("=")
+                self.archivo.write(f"{ctx.ID().getText().strip()} = ")
+                if self.estadoleer == 1: 
+                    self.archivo.write("Convert.ToInt32(")
+                elif self.estadoleer == 2: 
+                    self.archivo.write("Convert.ToDouble(")
+                elif self.estadoleer == 3: 
+                    self.archivo.write("Convert.ToBoolean(")
+                self.archivo.write("Console.ReadLine()")
+                if self.estadoleer != 4:
+                    self.archivo.write(")")
                 self.varGeneral[ctx.ID().getText().strip()] = -1
+                self.archivo.write(";")
             else: 
                 print("Error, no existe la variable ")
                 return
@@ -515,13 +549,15 @@ class Evaluador(proyectoVisitor):
             print("Visit DATA - Mostrar datos")
 
             if ctx.atrl() is not None:
+                self.archivo.write("Console.WriteLine(")
                 self.visit(ctx.atrl())
+                self.archivo.write(");")
             elif ctx.ID() is not None:
                 if ctx.ID().getText().strip() in self.varGeneral:
                     print(f"Variable a mostrar {ctx.ID().getText().strip()}")
+                    self.archivo.write(f"Console.WriteLine({ctx.ID().getText().strip()});")
                 else: 
                     print("Error, no existe la variable")
-                    sys.exit()
             else:
                 print("Visit DATA - Error: falta atrl o ID")
                 return
