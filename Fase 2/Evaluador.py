@@ -3,7 +3,7 @@ from proyectoParser import *
 from proyectoListener import *
 
 class Evaluador(proyectoVisitor):
-    def _init_(self):
+    def __init__(self):
         self.varTOTODILE = {}
         self.varWOOPER = {}
         self.varPIKACHU = {}
@@ -31,23 +31,30 @@ class Evaluador(proyectoVisitor):
     # Visit a parse tree produced by proyectoParser#line.
     def visitLine(self, ctx:proyectoParser.LineContext):
         if ctx.var() is not None:
+            self.archivo.write("\n")
             print(f"Visit LINE - Declaracion de variable")
             self.visit(ctx.var())
         elif ctx.condi() is not None:
+            self.archivo.write("\n")
             print(f"Visit LINE - Ciclo con condicion")
             self.visit(ctx.condi())
         elif ctx.arith() is not None:
+            self.archivo.write("\n")
             print(f"Visit LINE - operacion aritmetica")
             self.visit(ctx.arith())
         elif ctx.func() is not None:
+            self.archivo.write("\n")
             print(f"Visit LINE - Funcion ")
             self.visit(ctx.func())
         elif ctx.data() is not None:
+            self.archivo.write("\n")
             print(f"Visit LINE - Manejo de datos")
             self.visit(ctx.data())
         elif ctx.UNOWN() is not None and ctx.CHARMANDER() is not None:
+            self.archivo.write("\n")
             print("Visit LINE - Final programa")
         elif ctx.UNOWN() is not None:
+            self.archivo.write("\n")
             print("Visit LINE - UNOWN")
         return
 
@@ -56,12 +63,14 @@ class Evaluador(proyectoVisitor):
     def visitVar(self, ctx:proyectoParser.VarContext):
         if ctx.TOTODILE() is not None and ctx.ID() is not None and ctx.EQUAL() is not None:
             var_name = ctx.ID().getText().strip()
+            self.archivo.write(f"int {var_name} = ")
             if ctx.INT() is not None:
                 if var_name not in self.varGeneral:
                     value = int(ctx.INT().getText().strip())
                     print(f"Visit VAR - Declaracion entero para {var_name}")
                     self.varTOTODILE[var_name] = value
                     self.varGeneral[var_name] = value
+                    self.archivo.write(f"{value};")
                 else: 
                     print("Error, ya existe la varible que intentas definir")
                     return
@@ -84,10 +93,12 @@ class Evaluador(proyectoVisitor):
                 print("Error, falta fin de programa")
         elif ctx.WOOPER() is not None and ctx.ID() is not None and ctx.EQUAL() is not None and ctx.FLOAT() is not None:
             var_name = ctx.ID().getText().strip()
+            self.archivo.write(f"double {var_name} = ")
             if var_name not in self.varGeneral:
                 value = float(ctx.FLOAT().getText().strip())
                 print(f"Visit VAR - Declaracion flotante")
                 self.varWOOPER[var_name] = value
+                self.archivo.write(f"{value};")
             else: 
                     print("Error, ya existe la varible que intentas definir")
                     return
@@ -99,10 +110,15 @@ class Evaluador(proyectoVisitor):
                 print("Error, falta fin de programa")
         elif ctx.PIKACHU() is not None and ctx.ID() is not None and ctx.EQUAL() is not None and ctx.BOOL() is not None:
             var_name = ctx.ID().getText().strip()
+            self.archivo.write(f"bool {var_name} = ")
             if var_name not in self.varGeneral:
                 value = ctx.BOOL().getText().strip()
                 print(f"Visit VAR - Declaracion booleano")
                 self.varPIKACHU[var_name] = value
+                if value == "0F": 
+                    self.archivo.write(f"false;")
+                else:
+                    self.archivo.write(f"true;")
             else: 
                     print("Error, ya existe la varible que intentas definir")
                     return
@@ -114,10 +130,12 @@ class Evaluador(proyectoVisitor):
                 print("Error, falta fin de programa")
         elif ctx.CORVIKNIGHT() is not None and ctx.ID() is not None and ctx.EQUAL() is not None and ctx.STRING() is not None:
             var_name = ctx.ID().getText().strip()
+            self.archivo.write(f"string {var_name} = ")
             if var_name not in self.varGeneral:
                 value = ctx.STRING().getText().strip()
                 print(f"Visit VAR - Declaracion de string")
                 self.varCORVIKNIGHT[var_name] = value
+                self.archivo.write(f"{value};")
             else: 
                 print("Error, ya existe la varible que intentas definir")
                 return
