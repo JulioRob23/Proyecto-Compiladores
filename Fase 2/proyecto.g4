@@ -53,7 +53,7 @@ uxie: OPA arith CLPA
 	;
 
 	
-func: TENTACOOL ((ID OPA atr ID (CLPA|extraf)) | (OPA CLPA)) UNOWN line MEWTWO ID? UNOWN line
+func: TENTACOOL atr ((ID OPA atr ID (CLPA|extraf)) | (ID OPA CLPA)) UNOWN line MEWTWO ID? UNOWN line
 	| (atr)? ID EQUAL ID ((OPA atrl (CLPA | extrac)) | (OPA CLPA)) (UNOWN)? line ;
 
 extraf: COMA atr ID (extraf | CLPA);
