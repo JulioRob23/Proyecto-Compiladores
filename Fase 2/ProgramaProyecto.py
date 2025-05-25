@@ -13,7 +13,7 @@ input_stream5 = FileStream(r"Fase 1\prueba5.txt", encoding='utf-8')
 #input_stream8 = FileStream(r"C:\Users\jujar\OneDrive\Escritorio\BackUp\U Landivar\Primer semestre 2025\Compiladores\Proyecto Compiladores\Fase 1\prueba8.txt", encoding='utf-8')
 
 try: 
-    lexer = proyectoLexer(input_stream5)
+    lexer = proyectoLexer(input_stream2)
     token_stream = CommonTokenStream(lexer)
     parser = proyectoParser(token_stream)
 

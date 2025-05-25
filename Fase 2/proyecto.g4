@@ -43,7 +43,7 @@ condv: EXC EQUAL
 
 act: (UNOWN)? line;
 
-arith: (ID EQUAL)? xerneas ((PLUS|MINUS) xerneas)*;
+arith: (ID EQUAL)? xerneas ((PLUS|MINUS) xerneas)* (UNOWN)? line;
 
 xerneas: uxie ((MUL|DIV) uxie)*;
 

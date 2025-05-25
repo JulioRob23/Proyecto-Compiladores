@@ -13,6 +13,7 @@ class Evaluador(proyectoVisitor):
         self.archivo = open(self.nombre_archivo, 'w') #Se crea o se sobreescribe si ya existe
         self.archivo.write("internal class Program\n { \n private static void Main(string[] args)\n { \n")
         self.estadoleer = 0
+        self.estadoarith = 0
     
     def cerrar_archivo(self):
         self.archivo.write("\n } \n }")
@@ -76,8 +77,11 @@ class Evaluador(proyectoVisitor):
                     return
             elif ctx.arith() is not None:
                 if var_name not in self.varGeneral:
+                    self.estadoarith = 1
                     print(f"Visit VAR - Declaracion entero con operacion aritmetica para {var_name} ")
                     self.visit(ctx.arith())
+                    self.archivo.write(";")
+                    self.estadoarith = 0
                     self.varTOTODILE[var_name] = -1
                 else: 
                     print("Error, ya existe la varible que intentas definir")
@@ -352,6 +356,7 @@ class Evaluador(proyectoVisitor):
         print("Visit ARITH ")
         if ctx.ID() is not None and ctx.EQUAL() is not None:
             print(f"Asignacion a : {ctx.ID().getText().strip()}")
+            self.archivo.write(f"{ctx.ID().getText().strip()} = ")
         if ctx.xerneas() is not None: 
             self.visit(ctx.xerneas(0))
             if len(ctx.xerneas()) > 1: 
@@ -359,14 +364,21 @@ class Evaluador(proyectoVisitor):
                 for child in ctx.children: 
                     if child.getText().strip() == "+": 
                         print("Operador - + ")
+                        self.archivo.write("+")
                         self.visit(ctx.xerneas(idxxerneas))
                         idxxerneas += 1
                     elif child.getText().strip() == "-":
                         print("Operador - - ")
+                        self.archivo.write("-")
                         self.visit(ctx.xerneas(idxxerneas))
                         idxxerneas += 1
-                
+                if self.estadoarith == 0: 
+                    self.archivo.write(";")
+                    self.visit(ctx.line())   
             else: 
+                if self.estadoarith == 0: 
+                    self.archivo.write(";")
+                    self.visit(ctx.line())
                 return 
         else: 
             print("Error falta de operador")
@@ -383,14 +395,14 @@ class Evaluador(proyectoVisitor):
                 for child in ctx.children: 
                     if child.getText().strip() == "*": 
                         print("Operador - * ")
+                        self.archivo.write("*")
                         self.visit(ctx.uxie(idxuxie))
                         idxuxie += 1
                     elif child.getText().strip() == "/":
                         print("Operador - / ")
+                        self.archivo.write("/")
                         self.visit(ctx.uxie(idxuxie))
                         idxuxie += 1
-                    else: 
-                        return
             else: 
                 return
         else: 
@@ -403,14 +415,18 @@ class Evaluador(proyectoVisitor):
         if ctx.OPA() is not None:
             if ctx.CLPA() is not None: 
                 print("Visit UXIE - Value: (")
+                self.archivo.write("(")
                 self.visit(ctx.arith())
                 print("Visit UXIE - )")
+                self.archivo.write(")")
             else: 
                 print("Error, numero impar de parentesis")
         elif ctx.INT() is not None:
             print(f"Visit UXIE - Value: {int(ctx.INT().getText().strip())}")
+            self.archivo.write(f"{ctx.INT().getText().strip()}")
         elif ctx.ID() is not None:
             print(f"Visit UXIE - Value: {ctx.ID().getText().strip()}")
+            self.archivo.write(f"{ctx.ID().getText().strip()}")
         else: 
             print("Error, invalid value")
         return 

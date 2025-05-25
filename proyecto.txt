@@ -3,13 +3,14 @@ internal class Program
  private static void Main(string[] args)
  { 
 
-int limite = Convert.ToInt32(Console.ReadLine());
-int contador = 1;
-while (contador <= limite)
- {
-Console.WriteLine(contador);
-
-}
-
+int x = 5;
+int y = 10;
+bool z = false;
+bool a = true;
+z = m*z+a;
+string b = "Hola y adios";
+double j = 22.4;
+x = x/y;
+int resultado = x+y;
  } 
  }

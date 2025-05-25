@@ -2,7 +2,9 @@ Totodile  x = 5
 Totodile y = 10
 Pikachu z = 0F
 Pikachu a = 1V
+z = m * z + a
 Corviknight b = "Hola y adios"
 Wooper j = 22.4
+x = x/y
 Totodile resultado = x + y
-Charmander
+Charmander  
