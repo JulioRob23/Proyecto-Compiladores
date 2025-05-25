@@ -249,6 +249,7 @@ class proyectoParser ( Parser ):
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
+            sys.exit
         finally:
             self.exitRule()
         return localctx
@@ -370,6 +371,7 @@ class proyectoParser ( Parser ):
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
+            sys.exit
         finally:
             self.exitRule()
         return localctx
@@ -548,6 +550,7 @@ class proyectoParser ( Parser ):
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
+            sys.exit
         finally:
             self.exitRule()
         return localctx
@@ -702,6 +705,7 @@ class proyectoParser ( Parser ):
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
+            sys.exit
         finally:
             self.exitRule()
         return localctx
@@ -767,6 +771,7 @@ class proyectoParser ( Parser ):
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
+            sys.exit
         finally:
             self.exitRule()
         return localctx
@@ -820,6 +825,7 @@ class proyectoParser ( Parser ):
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
+            sys.exit
         finally:
             self.exitRule()
         return localctx
@@ -952,6 +958,7 @@ class proyectoParser ( Parser ):
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
+            sys.exit
         finally:
             self.exitRule()
         return localctx
@@ -1051,6 +1058,7 @@ class proyectoParser ( Parser ):
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
+            sys.exit
         finally:
             self.exitRule()
         return localctx
@@ -1116,6 +1124,7 @@ class proyectoParser ( Parser ):
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
+            sys.exit
         finally:
             self.exitRule()
         return localctx
@@ -1175,6 +1184,7 @@ class proyectoParser ( Parser ):
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
+            sys.exit
         finally:
             self.exitRule()
         return localctx
@@ -1272,6 +1282,7 @@ class proyectoParser ( Parser ):
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
+            sys.exit
         finally:
             self.exitRule()
         return localctx
@@ -1435,6 +1446,7 @@ class proyectoParser ( Parser ):
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
+            sys.exit
         finally:
             self.exitRule()
         return localctx

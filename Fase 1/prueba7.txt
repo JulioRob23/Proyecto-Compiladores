@@ -1,0 +1,4 @@
+Totodile x = 5
+Totodile y = 10
+Totodile resultado = x +  
+Charmander

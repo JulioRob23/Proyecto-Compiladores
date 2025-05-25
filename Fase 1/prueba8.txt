@@ -1,0 +1,4 @@
+Totodile x = 5
+Totodile resultado = x + z  
+Dragonite ( resultado )
+Charmander

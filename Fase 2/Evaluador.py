@@ -217,7 +217,10 @@ class Evaluador(proyectoVisitor):
             else:
                 valor = "<valor no encontrado>"
             
-            print(f"VISIT EXP - {id1} {operador} {valor}")
+            if valor == -1: 
+                print(f"VISIT EXP - {id1} {operador} {ids[1].getText()}")
+            else: 
+                print(f"VISIT EXP - {id1} {operador} {valor}")
             return f"{id1} {operador} {valor}"
 
         elif len(ids) == 1:
@@ -361,7 +364,7 @@ class Evaluador(proyectoVisitor):
                 id1 = ctx.ID(0).getText()
                 argumento = self.visit(ctx.atr())
                 id2 = ctx.ID(1).getText()
-                cierre = ctx.CLPA().getText() if ctx.CLPA() else self.visit(ctx.extraf)
+                cierre = ctx.CLPA().getText() if ctx.CLPA() else self.visit(ctx.extraf())
                 print(f"VISIT FUNC - {id1} ( {argumento} {id2} {cierre}")
 
             elif ctx.OPA() and ctx.CLPA():
@@ -387,6 +390,8 @@ class Evaluador(proyectoVisitor):
                 print(f"VISIT FUNC - {atr_val}")
 
             id_izq = ctx.ID(0).getText()
+            if id_izq not in self.varGeneral: 
+                self.varGeneral[id_izq] = -1
             if ctx.EQUAL():
                 print(f"FUNC -> {ctx.EQUAL().getText()}")
             id_der = ctx.ID(1).getText()
@@ -395,8 +400,8 @@ class Evaluador(proyectoVisitor):
                 op = ctx.OPA().getText()
                 if ctx.atrl():
                     arg = self.visit(ctx.atrl())
-                    cierre = ctx.CLPA().getText() if ctx.CLPA() else self.visit(ctx.extrac)
-                    print(f"VISIT FUNC - {id_izq} = {id_der} {op}{arg}{cierre}")
+                    cierre = ctx.CLPA().getText() if ctx.CLPA() else self.visit(ctx.extrac())
+                    print(f"VISIT FUNC - {id_izq} = {id_der}")
                 else:
                     print(f"VISIT FUNC -> {id_izq} = {id_der} ()")
 
@@ -516,6 +521,7 @@ class Evaluador(proyectoVisitor):
                     print(f"Variable a mostrar {ctx.ID().getText().strip()}")
                 else: 
                     print("Error, no existe la variable")
+                    sys.exit()
             else:
                 print("Visit DATA - Error: falta atrl o ID")
                 return
