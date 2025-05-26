@@ -3,14 +3,16 @@ internal class Program
  private static void Main(string[] args)
  { 
 
-int x = 5;
-int y = 10;
-bool z = false;
-bool a = true;
-z = m*z+a;
-string b = "Hola y adios";
-double j = 22.4;
-x = x/y;
-int resultado = x+y;
+Console.WriteLine("Ingrese su opcion" );
+Console.WriteLine("1. Decir Hola" );
+Console.WriteLine("2. Decir Adios" );
+int opcion = Convert.ToInt32(Console.ReadLine());
+if (opcion == 1)
+ {
+Console.WriteLine("HOLA" );
+}
+ else {
+Console.WriteLine("ADIOS" );
+}
  } 
  }

@@ -1,0 +1,10 @@
+Dragonite("Ingrese su opcion")
+Dragonite("1. Decir Hola")
+Dragonite("2. Decir Adios")
+Totodile opcion = Seel
+Ratata opcion = 1
+Dragonite("HOLA")
+Clefable
+Dragonite("ADIOS")
+Cresselia
+Charmander

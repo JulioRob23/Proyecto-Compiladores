@@ -1,11 +1,9 @@
-Tentacool suma ( Totodile a , Totodile b )
+Tentacool Totodile suma ( Totodile a , Totodile b )
 Totodile resultado = a + b
 Mewtwo resultado
-
-Tentacool resta ( Totodile a , Totodile b )
+Tentacool Totodile resta ( Totodile a , Totodile b )
 Totodile resultadoresta = a - b
 Mewtwo resultadoresta
-
 Totodile resultadoresta = resta ( 4 , 6 )
 Totodile resultado = suma ( 4 , 6 )
 Dragonite (resultadoresta)

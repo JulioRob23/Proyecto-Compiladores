@@ -431,18 +431,34 @@ class Evaluador(proyectoVisitor):
             print("Error, invalid value")
         return 
 
-    # Visit a parse tree produced by proyectoParser#func.
+# Visit a parse tree produced by proyectoParser#func.
     def visitFunc(self, ctx:proyectoParser.FuncContext):
         if ctx.TENTACOOL():
 
             if len(ctx.ID()) >= 2 and ctx.OPA() and ctx.atr():
+                self.archivo.write("static ")
+                self.visit(ctx.atr(0))
+                self.archivo.write(" ")
+                self.archivo.write(f"{ctx.ID(0).getText()}")
+                self.archivo.write("(")
+                self.visit(ctx.atr(1))
+                self.archivo.write(" ")
+                self.archivo.write(f"{ctx.ID(1).getText()}")
                 id1 = ctx.ID(0).getText()
-                argumento = self.visit(ctx.atr())
+                argumento = " "
                 id2 = ctx.ID(1).getText()
-                cierre = ctx.CLPA().getText() if ctx.CLPA() else self.visit(ctx.extraf())
+                if ctx.CLPA() is not None:
+                    cierre = ctx.CLPA().getText()
+                    self.archivo.write(")\n {\n")
+                else:
+                    self.visit(ctx.extraf())
+                    cierre = "extra "
                 print(f"VISIT FUNC - {id1} ( {argumento} {id2} {cierre}")
 
             elif ctx.OPA() and ctx.CLPA():
+                self.archivo.write("static ")
+                self.visit(ctx.atr(0))
+                self.archivo.write("()\n {\n")
                 print("VISIT FUNC  - ()")
 
             if ctx.UNOWN():
@@ -454,6 +470,10 @@ class Evaluador(proyectoVisitor):
                 print("VISIT FUNC - MEWTWO")
                 if ctx.ID(2):
                     print(f"VISIT FUNC -> ID2: {ctx.ID(2).getText()}")
+                    self.archivo.write(f"\n return {ctx.ID(2).getText()};")
+                else:
+                    self.archivo.write(f"\n return {ctx.ID(2).getText()};")
+                self.archivo.write("\n } \n")
 
             if ctx.UNOWN(1):
                 print("Visit ACT - value: Unown")
@@ -461,24 +481,33 @@ class Evaluador(proyectoVisitor):
 
         else:
             if ctx.atr():
-                atr_val = self.visit(ctx.atr())
-                print(f"VISIT FUNC - {atr_val}")
+                self.visit(ctx.atr(0))
+                self.archivo.write(" ")
+                print(f"VISIT FUNC - ")
 
             id_izq = ctx.ID(0).getText()
             if id_izq not in self.varGeneral: 
                 self.varGeneral[id_izq] = -1
             if ctx.EQUAL():
                 print(f"FUNC -> {ctx.EQUAL().getText()}")
+                self.archivo.write(f"{id_izq} = ")
             id_der = ctx.ID(1).getText()
+            self.archivo.write(f"{id_der}")
 
             if ctx.OPA():
                 op = ctx.OPA().getText()
                 if ctx.atrl():
-                    arg = self.visit(ctx.atrl())
-                    cierre = ctx.CLPA().getText() if ctx.CLPA() else self.visit(ctx.extrac())
+                    self.archivo.write("(")
+                    self.visit(ctx.atrl())
+                    if ctx.CLPA() is not None:
+                        cierre = ctx.CLPA().getText()
+                        self.archivo.write(");") 
+                    else: 
+                        self.visit(ctx.extrac())
                     print(f"VISIT FUNC - {id_izq} = {id_der}")
                 else:
                     print(f"VISIT FUNC -> {id_izq} = {id_der} ()")
+                    self.archivo.write(f"{id_der}();")
 
             if ctx.UNOWN():
                 print("Visit ACT - value: Unown")
@@ -487,20 +516,23 @@ class Evaluador(proyectoVisitor):
 
         return
 
-
-    # Visit a parse tree produced by proyectoParser#extraf.
+# Visit a parse tree produced by proyectoParser#extraf.
     def visitExtraf(self, ctx:proyectoParser.ExtrafContext):
         if ctx.COMA() is not None:
+            self.archivo.write(",")
             if ctx.atr() is not None and ctx.ID() is not None:
                 print("Visit EXTRAF - parametro extra")
                 self.visit(ctx.atr())
+                self.archivo.write(" ")
                 print(f"Nombre variable: {ctx.ID().getText().strip()}")
+                self.archivo.write(f"{ctx.ID().getText().strip()}")
 
                 if ctx.extraf() is not None:
                     self.visit(ctx.extraf())
                 elif ctx.CLPA() is not None:
                     print("Visit EXTRAF - )")
                     self.visit(ctx.CLPA())
+                    self.archivo.write(")\n {\n")
                 else:
                     print("Visit EXTRAF - Error: falta extra funcion o )")
             else:
@@ -511,14 +543,17 @@ class Evaluador(proyectoVisitor):
 
     
 
-      # Visit a parse tree produced by proyectoParser#extrac.
+# Visit a parse tree produced by proyectoParser#extrac.
     def visitExtrac(self, ctx:proyectoParser.ExtracContext):
         if ctx.COMA() is not None:
+            self.archivo.write(",")
             print("Visit EXTRAC - atributo extra")
             if ctx.atrl() is not None:
                 print("Enviar atributo extra: ")
-                self.visit(ctx.atrl())  
-            elif ctx.ID() is not None:            
+                self.visit(ctx.atrl())
+                self.archivo.write(" ")  
+            elif ctx.ID() is not None:  
+                self.archivo.write(f"{ctx.ID().getText().strip()}")          
                 if ctx.ID() in self.varGeneral:
                     print(f"Enviar atributo extra - variable: {ctx.ID().getText().strip()}")
             else:
@@ -529,6 +564,8 @@ class Evaluador(proyectoVisitor):
                 self.visit(ctx.extrac())
             elif ctx.CLPA() is not None:
                 print("Visit EXTRAC - )")
+                self.archivo.write(f");")
+
             else:
                 print("Visit EXTRAC - Error: falta extrac o )")
         else:
@@ -540,19 +577,19 @@ class Evaluador(proyectoVisitor):
     def visitAtr(self, ctx:proyectoParser.AtrContext):
         if ctx.TOTODILE() is not None: 
             print(f"Visit ATR - Value: Totodile")
-            self.archivo.write("int ")
+            self.archivo.write("int")
             self.estadoleer = 1
         elif ctx.WOOPER() is not None: 
             print(f"Visit ATR - Value: Wooper")
-            self.archivo.write("double ")
+            self.archivo.write("double")
             self.estadoleer = 2
         elif ctx.PIKACHU() is not None: 
             print(f"Visit ATR - Value: Pickachu")
-            self.archivo.write("bool ")
+            self.archivo.write("bool")
             self.estadoleer = 3
         elif ctx.CORVIKNIGHT() is not None: 
             print(f"Visit ATR - Value: Corviknight")
-            self.archivo.write("string ")
+            self.archivo.write("string")
             self.estadoleer = 4
         else: 
             print("Error, ATR -  invalid value")
@@ -582,6 +619,7 @@ class Evaluador(proyectoVisitor):
         if ctx.atr() is not None and ctx.ID() is not None and ctx.EQUAL() is not None and ctx.SEEL() is not None:
             print("Visit DATA - Leer datos")
             self.visit(ctx.atr())
+            self.archivo.write(" ")
             
             if ctx.ID().getText().strip() not in self.varGeneral:
                 print(f"Variable a asignar: {ctx.ID().getText().strip()}")
@@ -617,7 +655,7 @@ class Evaluador(proyectoVisitor):
             if ctx.atrl() is not None:
                 self.archivo.write("Console.WriteLine(")
                 self.visit(ctx.atrl())
-                self.archivo.write(");")
+                self.archivo.write(" );")
             elif ctx.ID() is not None:
                 if ctx.ID().getText().strip() in self.varGeneral:
                     print(f"Variable a mostrar {ctx.ID().getText().strip()}")
