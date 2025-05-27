@@ -14,6 +14,8 @@ class Evaluador(proyectoVisitor):
         self.archivo.write("internal class Program\n { \n private static void Main(string[] args)\n { \n")
         self.estadoleer = 0
         self.estadoarith = 0
+        self.estadoarithpar = 0
+        self.varfunc = {}
     
     def cerrar_archivo(self):
         self.archivo.write("\n } \n }")
@@ -373,12 +375,14 @@ class Evaluador(proyectoVisitor):
                         self.visit(ctx.xerneas(idxxerneas))
                         idxxerneas += 1
                 if self.estadoarith == 0: 
-                    self.archivo.write(";")
-                    self.visit(ctx.line())   
+                    if self.estadoarithpar == 0:
+                        self.archivo.write(";")
+                        self.visit(ctx.line())   
             else: 
                 if self.estadoarith == 0: 
-                    self.archivo.write(";")
-                    self.visit(ctx.line())
+                    if self.estadoarithpar == 0: 
+                        self.archivo.write(";")
+                        self.visit(ctx.line())
                 return 
         else: 
             print("Error falta de operador")
@@ -416,8 +420,10 @@ class Evaluador(proyectoVisitor):
             if ctx.CLPA() is not None: 
                 print("Visit UXIE - Value: (")
                 self.archivo.write("(")
+                self.estadoarithpar += 1
                 self.visit(ctx.arith())
                 print("Visit UXIE - )")
+                self.estadoarithpar -= 1
                 self.archivo.write(")")
             else: 
                 print("Error, numero impar de parentesis")
@@ -425,8 +431,11 @@ class Evaluador(proyectoVisitor):
             print(f"Visit UXIE - Value: {int(ctx.INT().getText().strip())}")
             self.archivo.write(f"{ctx.INT().getText().strip()}")
         elif ctx.ID() is not None:
-            print(f"Visit UXIE - Value: {ctx.ID().getText().strip()}")
-            self.archivo.write(f"{ctx.ID().getText().strip()}")
+            if ctx.ID().getText().strip() in self.varGeneral or ctx.ID().getText().strip() in self.varfunc:
+                print(f"Visit UXIE - Value: {ctx.ID().getText().strip()}")
+                self.archivo.write(f"{ctx.ID().getText().strip()}")
+            else: 
+                print("Variable no declarada")
         else: 
             print("Error, invalid value")
         return 
@@ -440,10 +449,12 @@ class Evaluador(proyectoVisitor):
                 self.visit(ctx.atr(0))
                 self.archivo.write(" ")
                 self.archivo.write(f"{ctx.ID(0).getText()}")
+                self.varfunc[ctx.ID(0).getText()] = -1
                 self.archivo.write("(")
                 self.visit(ctx.atr(1))
                 self.archivo.write(" ")
                 self.archivo.write(f"{ctx.ID(1).getText()}")
+                self.varfunc[ctx.ID(1).getText()] = -1
                 id1 = ctx.ID(0).getText()
                 argumento = " "
                 id2 = ctx.ID(1).getText()
@@ -526,6 +537,7 @@ class Evaluador(proyectoVisitor):
                 self.archivo.write(" ")
                 print(f"Nombre variable: {ctx.ID().getText().strip()}")
                 self.archivo.write(f"{ctx.ID().getText().strip()}")
+                self.varfunc[ctx.ID().getText()] = -1
 
                 if ctx.extraf() is not None:
                     self.visit(ctx.extraf())

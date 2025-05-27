@@ -3,9 +3,15 @@ Dragonite ( "Hola Mundo" )
 Dragonite ( 89 )
 Dragonite ( 12.45 )
 Dragonite ( x )
+Dragonite ( "Ingrese un entero" )
 Totodile y = Seel
 Dragonite ( y )
+Dragonite ( "Ingrese una cadena" )
 Corviknight z = Seel
+Dragonite ( "Ingrese un booleano" )
 Pikachu j = Seel
+Dragonite ( "Ingrese un decimal" )
 Wooper a = Seel
+Totodile k = 0
+k = 5 * x - y * ( 10 - 5 * ( y + 2 ) )
 Charmander

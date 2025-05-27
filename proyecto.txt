@@ -3,16 +3,23 @@ internal class Program
  private static void Main(string[] args)
  { 
 
-Console.WriteLine("Ingrese su opcion" );
-Console.WriteLine("1. Decir Hola" );
-Console.WriteLine("2. Decir Adios" );
-int opcion = Convert.ToInt32(Console.ReadLine());
-if (opcion == 1)
+static int suma(int a,int b)
  {
-Console.WriteLine("HOLA" );
-}
- else {
-Console.WriteLine("ADIOS" );
-}
+
+int resultado = a+b;
+ return resultado;
+ } 
+
+static int resta(int a,int b)
+ {
+
+int resultadoresta = a-b;
+ return resultadoresta;
+ } 
+
+int resultadoresta = resta(4,6 );
+int resultado = suma(4,6 );
+Console.WriteLine(resultadoresta);
+Console.WriteLine(resultado);
  } 
  }

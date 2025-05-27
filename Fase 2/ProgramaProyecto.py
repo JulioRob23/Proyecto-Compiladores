@@ -15,7 +15,7 @@ input_stream9 = FileStream(r"Fase 1\Examen.txt", encoding='utf-8')
 
 
 try: 
-    lexer = proyectoLexer(input_stream9)
+    lexer = proyectoLexer(input_stream4)
     token_stream = CommonTokenStream(lexer)
     parser = proyectoParser(token_stream)
 

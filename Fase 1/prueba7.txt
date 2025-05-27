@@ -1,4 +1,21 @@
+Tentacool Totodile suma ( Totodile a , Totodile b )
+Totodile resultado = a + b
+Mewtwo resultado
+Tentacool Totodile resta ( Totodile a , Totodile b )
+Totodile resultadoresta = a - b
+Mewtwo resultadoresta
+Totodile resultadoresta = resta ( 4 , 6 )
+Totodile resultado = suma ( 4 , 6 )
+Dragonite (resultadoresta)
+Dragonite (resultado)
+Totodile limite = Seel
+Totodile contador = 1
+Necrozma contador <= limite 
+Dragonite ( contador )
+contador = contador + 1
+Cresselia
 Totodile x = 5
 Totodile y = 10
-Totodile resultado = x +  
+Totodile k = 0
+k = 5 * x - y * ( 10 - 5 * ( y + 2 ) )
 Charmander
