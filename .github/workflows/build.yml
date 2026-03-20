@@ -1,24 +1,19 @@
-name: Build and Analyze
-
+name: Build
 on:
   push:
     branches:
-      - main  # Asegúrate de que tu rama principal se llame 'main'
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
-
 jobs:
-  sonarcloud:
-    name: SonarCloud Scan
-    runs-on: ubuntu-latest
+  sonarqube:
+    name: SonarQube
+    runs-on: windows-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Permite un mejor análisis del historial
-
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Generado automáticamente por GitHub
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # El secreto que tú configuraste
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
