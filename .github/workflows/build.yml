@@ -1,0 +1,24 @@
+name: Build and Analyze
+
+on:
+  push:
+    branches:
+      - main  # Asegúrate de que tu rama principal se llame 'main'
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sonarcloud:
+    name: SonarCloud Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Permite un mejor análisis del historial
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Generado automáticamente por GitHub
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # El secreto que tú configuraste
