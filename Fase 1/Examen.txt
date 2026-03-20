@@ -1,10 +1,10 @@
-Dragonite("Ingrese su opcion")
-Dragonite("1. Decir Hola")
-Dragonite("2. Decir Adios")
-Totodile opcion = Seel
-Ratata opcion = 1
-Dragonite("HOLA")
-Clefable
-Dragonite("ADIOS")
+Dragonite ( "Ingrese una contraseña" )
+Corviknight c1 = Seel
+Dragonite ( "Ingrese nuevamente" )
+Corviknight c2 = Seel
+While c1 != c2
+Dragonite ( "No coincide, ingrese nuevamente" )
+Corviknight c3 = Seel
+c2 = c3
 Cresselia
 Charmander

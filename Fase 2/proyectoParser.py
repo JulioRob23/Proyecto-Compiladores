@@ -133,7 +133,7 @@ class proyectoParser ( Parser ):
     literalNames = [ "<INVALID>", "'Charmander'", "'Totodile'", "'Wooper'", 
                      "'Pikachu'", "'Corviknight'", "'Ratata'", "'Paras'", 
                      "'Clefable'", "'Tentacool'", "'Seel'", "'Dragonite'", 
-                     "'Necrozma'", "'Cresselia'", "'Mewtwo'", "<INVALID>", 
+                     "'While'", "'Cresselia'", "'Mewtwo'", "<INVALID>", 
                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                      "<INVALID>", "<INVALID>", "'='", "'!'", "'<'", "'>'", 
                      "'+'", "'-'", "'/'", "'*'", "'('", "')'", "','" ]

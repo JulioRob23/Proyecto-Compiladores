@@ -10,12 +10,11 @@ input_stream4 = FileStream(r"Fase 1\prueba4.txt", encoding='utf-8')
 input_stream5 = FileStream(r"Fase 1\prueba5.txt", encoding='utf-8')
 input_stream6 = FileStream(r"Fase 1\prueba6.txt", encoding='utf-8')
 input_stream7 = FileStream(r"Fase 1\prueba7.txt", encoding='utf-8')
-input_stream8 = FileStream(r"Fase 1\prueba8.txt", encoding='utf-8')
 input_stream9 = FileStream(r"Fase 1\Examen.txt", encoding='utf-8')
 
 
 try: 
-    lexer = proyectoLexer(input_stream4)
+    lexer = proyectoLexer(input_stream9)
     token_stream = CommonTokenStream(lexer)
     parser = proyectoParser(token_stream)
 

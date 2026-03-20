@@ -85,7 +85,7 @@ CLEFABLE : 'Clefable';
 TENTACOOL : 'Tentacool';
 SEEL : 'Seel';
 DRAGONITE : 'Dragonite';
-NECROZMA : 'Necrozma';
+NECROZMA : 'While';
 CRESSELIA : 'Cresselia';
 MEWTWO : 'Mewtwo';
 UNOWN : [\r\n]+ ;

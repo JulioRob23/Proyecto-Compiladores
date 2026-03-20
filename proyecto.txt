@@ -3,23 +3,15 @@ internal class Program
  private static void Main(string[] args)
  { 
 
-static int suma(int a,int b)
+Console.WriteLine("Ingrese una contraseña" );
+string c1 = Console.ReadLine();
+Console.WriteLine("Ingrese nuevamente" );
+string c2 = Console.ReadLine();
+while (c1 != c2)
  {
-
-int resultado = a+b;
- return resultado;
- } 
-
-static int resta(int a,int b)
- {
-
-int resultadoresta = a-b;
- return resultadoresta;
- } 
-
-int resultadoresta = resta(4,6 );
-int resultado = suma(4,6 );
-Console.WriteLine(resultadoresta);
-Console.WriteLine(resultado);
+Console.WriteLine("No coincide, ingrese nuevamente" );
+string c3 = Console.ReadLine();
+c2 = c3;
+}
  } 
  }
